@@ -1,0 +1,251 @@
+{
+  "images": [
+    { "id": 1, "name": "skincare", "url": "/images/skincare.jpg" },
+    { "id": 2, "name": "haircare", "url": "/images/haircare.jpg" },
+    { "id": 3, "name": "bodycare", "url": "/images/bodycare.jpg" },
+    { "id": 4, "name": "makeup", "url": "/images/makeup.jpg" }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "product_name": "Hydrating Facial Cream",
+      "price": 29.99,
+      "description": "A lightweight, hydrating cream perfect for daily use.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.5,
+      "ingredients": [
+        "Aqua",
+        "Glycerin",
+        "Caprylic/Capric Triglyceride",
+        "Shea Butter"
+      ]
+    },
+    {
+      "id": 2,
+      "product_name": "Nourishing Night Serum",
+      "price": 49.99,
+      "description": "An overnight serum that rejuvenates your skin while you sleep.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.7,
+      "ingredients": ["Water", "Squalane", "Hyaluronic Acid", "Vitamin C"]
+    },
+    {
+      "id": 3,
+      "product_name": "Matte Lipstick",
+      "price": 19.99,
+      "description": "Long-lasting matte lipstick available in various shades.",
+      "category": "Makeup",
+      "image": "makeup",
+      "rating": 4.3,
+      "ingredients": ["Castor Oil", "Beeswax", "Candelilla Wax", "Red 7 Lake"]
+    },
+    {
+      "id": 4,
+      "product_name": "Volumizing Mascara",
+      "price": 25.0,
+      "description": "Get dramatic lashes with our volumizing mascara.",
+      "category": "Makeup",
+      "image": "makeup",
+      "rating": 4.6,
+      "ingredients": ["Water", "Beeswax", "Carnauba Wax", "Iron Oxides"]
+    },
+    {
+      "id": 5,
+      "product_name": "Refreshing Facial Mist",
+      "price": 15.5,
+      "description": "A refreshing facial mist to keep your skin hydrated throughout the day.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.4,
+      "ingredients": [
+        "Aqua",
+        "Rosa Damascena Flower Water",
+        "Glycerin",
+        "Aloe Vera"
+      ]
+    },
+    {
+      "id": 6,
+      "product_name": "Gentle Exfoliating Scrub",
+      "price": 23.0,
+      "description": "A gentle exfoliating scrub to remove dead skin cells.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.5,
+      "ingredients": [
+        "Water",
+        "Sodium Lauryl Sulfate",
+        "Walnut Shell Powder",
+        "Glycerin"
+      ]
+    },
+    {
+      "id": 7,
+      "product_name": "Hydrating Hair Balm",
+      "price": 5.99,
+      "description": "Keep your hair soft and hydrated with our hair balm.",
+      "category": "Hair Care",
+      "image": "haircare",
+      "rating": 4.8,
+      "ingredients": ["Beeswax", "Coconut Oil", "Shea Butter", "Vitamin E"]
+    },
+    {
+      "id": 8,
+      "product_name": "Anti-Aging Cream",
+      "price": 60.0,
+      "description": "Reduce the appearance of fine lines and wrinkles.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.7,
+      "ingredients": ["Aqua", "Retinol", "Peptides", "Hyaluronic Acid"]
+    },
+    {
+      "id": 9,
+      "product_name": "Brightening Eye Cream",
+      "price": 35.0,
+      "description": "Brighten and depuff your under-eye area.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.6,
+      "ingredients": ["Aqua", "Caffeine", "Vitamin C", "Niacinamide"]
+    },
+    {
+      "id": 10,
+      "product_name": "Blush Palette",
+      "price": 30.0,
+      "description": "A versatile blush palette with various shades.",
+      "category": "Makeup",
+      "image": "makeup",
+      "rating": 4.5,
+      "ingredients": ["Talc", "Mica", "Magnesium Stearate", "Mineral Oil"]
+    },
+    {
+      "id": 11,
+      "product_name": "Calming Face Mask",
+      "price": 12.99,
+      "description": "A soothing face mask for a relaxing skincare routine.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.5,
+      "ingredients": [
+        "Kaolin",
+        "Aloe Vera",
+        "Chamomile Extract",
+        "Green Tea Extract"
+      ]
+    },
+    {
+      "id": 12,
+      "product_name": "Radiant Highlighter",
+      "price": 22.0,
+      "description": "Add a luminous glow to your skin with our radiant highlighter.",
+      "category": "Makeup",
+      "image": "makeup",
+      "rating": 4.4,
+      "ingredients": ["Mica", "Talc", "Magnesium Stearate", "Silica"]
+    },
+    {
+      "id": 13,
+      "product_name": "Cleansing Oil",
+      "price": 18.5,
+      "description": "Gently remove makeup and impurities with our cleansing oil.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.6,
+      "ingredients": ["Mineral Oil", "Jojoba Oil", "Rosehip Oil", "Vitamin E"]
+    },
+    {
+      "id": 14,
+      "product_name": "Firming Body Lotion",
+      "price": 24.99,
+      "description": "Firm and hydrate your skin with our body lotion.",
+      "category": "Body Care",
+      "image": "bodycare",
+      "rating": 4.7,
+      "ingredients": ["Aqua", "Shea Butter", "Caffeine", "Collagen"]
+    },
+    {
+      "id": 15,
+      "product_name": "Detoxifying Charcoal Mask",
+      "price": 21.0,
+      "description": "Purify your skin with our detoxifying charcoal mask.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.5,
+      "ingredients": [
+        "Activated Charcoal",
+        "Bentonite Clay",
+        "Aloe Vera",
+        "Glycerin"
+      ]
+    },
+    {
+      "id": 16,
+      "product_name": "Revitalizing Hair Serum",
+      "price": 29.5,
+      "description": "Revitalize and nourish your hair with our serum.",
+      "category": "Hair Care",
+      "image": "haircare",
+      "rating": 4.7,
+      "ingredients": ["Argan Oil", "Keratin", "Biotin", "Vitamin E"]
+    },
+    {
+      "id": 17,
+      "product_name": "Whitening Toothpaste",
+      "price": 7.99,
+      "description": "Brighten your smile with our whitening toothpaste.",
+      "category": "Hair Care",
+      "image": "haircare",
+      "rating": 4.4,
+      "ingredients": [
+        "Hydrogen Peroxide",
+        "Sodium Fluoride",
+        "Silica",
+        "Peppermint Oil"
+      ]
+    },
+    {
+      "id": 18,
+      "product_name": "Cooling Aftershave Balm",
+      "price": 14.5,
+      "description": "Soothe and refresh your skin after shaving with our aftershave balm.",
+      "category": "Body Care",
+      "image": "bodycare",
+      "rating": 4.6,
+      "ingredients": ["Aqua", "Aloe Vera", "Menthol", "Vitamin E"]
+    },
+    {
+      "id": 19,
+      "product_name": "Intensive Body Cream",
+      "price": 10.99,
+      "description": "Moisturize and protect your body with our intensive body cream.",
+      "category": "Body Care",
+      "image": "bodycare",
+      "rating": 4.5,
+      "ingredients": [
+        "Hydrogen Peroxide",
+        "Sodium Fluoride",
+        "Silica",
+        "Peppermint Oil"
+      ]
+    },
+    {
+      "id": 20,
+      "product_name": "Calming Face Mask",
+      "price": 12.99,
+      "description": "A soothing face mask for a relaxing skincare routine.",
+      "category": "Skincare",
+      "image": "skincare",
+      "rating": 4.5,
+      "ingredients": [
+        "Kaolin",
+        "Aloe Vera",
+        "Chamomile Extract",
+        "Green Tea Extract"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+import * as types from './database.types.js';
+const initState = {
+  products: [],
+  images: '',
+  currentProduct: '',
+  quickViewProduct: '',
+};
+
+export const reducer = (state = initState, action) => {
+  switch (action.type) {
+    case types.SET_PRODUCTS:
+      return { ...state, products: action.payload.products };
+    case types.SET_IMAGES:
+      return { ...state, images: action.payload.images };
+    case types.SET_CURRENT_PRODUCT:
+      return { ...state, currentProduct: action.payload.product };
+    case types.SET_QUICKVIEW_PRODUCT:
+      return { ...state, quickViewProduct: action.payload.product };
+
+    default:
+      return state;
+  }
+};
