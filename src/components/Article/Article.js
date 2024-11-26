@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
 import search from '../../img/search.png';
-import { quickViewFunction } from '../context/QuickViewContext.js';
+import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { getProduct } from '../../modules/database/database.actions.js';
 
 function Article({ images, product }) {

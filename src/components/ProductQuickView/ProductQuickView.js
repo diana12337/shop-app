@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import StyledQuickView from './ProductQuickView.styled.js';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button.js';
-import { quickViewFunction } from '../context/QuickViewContext.js';
+import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { setQuickViewProduct } from '../../modules/database/database.actions.js';
+import LocalStorageContext from '../../context/LocalStorageContext.js';
 const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
+  const { /* productsLS, setItemsLS */ addItem } =
+    useContext(LocalStorageContext);
   const { quickView, showQuickView } = quickViewFunction();
   const dispatch = useDispatch();
   const images = useSelector((state) => state.images);
@@ -12,6 +15,37 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
     return null;
   }
 
+  /*   const addItem = (newItem) => {
+    const existingProductIndex = productsLS.findIndex(
+      (item) => item.id === newItem.id
+    );
+
+    if (existingProductIndex >= 0) {
+      const di = productsLS.map((productLS) =>
+        productLS.id === product.id
+          ? { ...productLS, amount: productLS.amount + 1 }
+          : productLS
+      );
+      setItemsLS(di);
+    } else {
+      const newS = [...productsLS, newItem];
+      setItemsLS(newS);
+    }
+  }; */
+
+  const handleAddingProduct = () => {
+    const newItem = {
+      id: product.id,
+      name: product.product_name,
+      price: product.price,
+      amount: 1,
+    };
+
+    addItem(newItem, product);
+
+    showQuickView(false);
+    dispatch(setQuickViewProduct(''));
+  };
   return (
     <StyledQuickView>
       <section>
@@ -37,12 +71,13 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
         </article>
         <div>
           <Button
-            text="Confirm"
-            /*   onClick={onConfirm}
-            buttonStyle="buttonConfirmBox" */
+            text="to shopping cart"
+            onClick={() => handleAddingProduct()}
+
+            /*     buttonStyle="buttonConfirmBox"  */
           />
           <Button
-            text="Cancel"
+            text="return to shop"
             /*  buttonStyle="buttonConfirmBox"  */
             onClick={() => {
               showQuickView(false);

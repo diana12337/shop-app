@@ -10,12 +10,20 @@ import Product from './pages/Product/Product.js';
 import { theme } from './theme/theme.js';
 import { ThemeProvider } from 'styled-components';
 import ResetStyle from './styled/Reset.js';
-import { SharedFunctionProvider } from './components/context/QuickViewContext.js';
+import { SharedFunctionProvider } from './context/QuickViewContext.js';
 import CategoryPage from './pages/CategoryPage/CategoryPage.js';
-import { fetchData } from './components/helpers/imagesProvider.js';
+import { fetchData } from './helpers/imagesProvider.js';
+import LocalStorageContext from './context/LocalStorageContext.js';
+import useStorage from './hook/hook.js';
 function App() {
   const dispatch = useDispatch();
-
+  const [
+    productsLS,
+    setItemsLS,
+    findProductById,
+    updateProductAmount,
+    addItem,
+  ] = useStorage('shoppingCart');
   useEffect(() => {
     console.log('app rendering');
     const fetchProducts = async () => {
@@ -38,22 +46,32 @@ function App() {
     fetchImages();
   }, [dispatch]);
   return (
-    <SharedFunctionProvider>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Homepage />} />
-            <Route exact path="/home" element={<Homepage />} />
-            {/*      <Route exact path="/about"><About /> </Route> */}
+    <LocalStorageContext.Provider
+      value={{
+        productsLS,
+        setItemsLS,
+        findProductById,
+        updateProductAmount,
+        addItem,
+      }}
+    >
+      <SharedFunctionProvider>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<Homepage />} />
+              <Route exact path="/home" element={<Homepage />} />
+              {/*      <Route exact path="/about"><About /> </Route> */}
 
-            <Route path="/category/:slug/:page" element={<CategoryPage />} />
-            <Route path="/product/:id" element={<Product />} />
-            {/*      <Route path="*" element={<NotFound/>} />*/}
-          </Routes>
-        </Router>
-        <ResetStyle />
-      </ThemeProvider>
-    </SharedFunctionProvider>
+              <Route path="/category/:slug/:page" element={<CategoryPage />} />
+              <Route path="/product/:id" element={<Product />} />
+              {/*      <Route path="*" element={<NotFound/>} />*/}
+            </Routes>
+          </Router>
+          <ResetStyle />
+        </ThemeProvider>
+      </SharedFunctionProvider>
+    </LocalStorageContext.Provider>
   );
 }
 
