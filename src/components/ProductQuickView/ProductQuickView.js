@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StyledQuickView from './ProductQuickView.styled.js';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button.js';
@@ -8,6 +9,7 @@ import LocalStorageContext from '../../context/LocalStorageContext.js';
 const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
   const { /* productsLS, setItemsLS */ addItem } =
     useContext(LocalStorageContext);
+  const navigate = useNavigate();
   const { quickView, showQuickView } = quickViewFunction();
   const dispatch = useDispatch();
   const images = useSelector((state) => state.images);
@@ -45,6 +47,8 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
 
     showQuickView(false);
     dispatch(setQuickViewProduct(''));
+
+    navigate('/cart');
   };
   return (
     <StyledQuickView>

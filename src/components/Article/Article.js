@@ -1,4 +1,5 @@
 import React from 'react';
+
 import StyledArticle from './Article.styled.js';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ function Article({ images, product }) {
     showQuickView(true);
     dispatch(getProduct('products', product.id));
   };
+
   return (
     <StyledArticle>
       <Link to={`/product/${product.id}`}>
@@ -37,5 +39,4 @@ function Article({ images, product }) {
     </StyledArticle>
   );
 }
-
 export default Article;

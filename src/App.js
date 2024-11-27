@@ -12,18 +12,14 @@ import { ThemeProvider } from 'styled-components';
 import ResetStyle from './styled/Reset.js';
 import { SharedFunctionProvider } from './context/QuickViewContext.js';
 import CategoryPage from './pages/CategoryPage/CategoryPage.js';
+import ShoppingCart from './pages/ShoppingCart/ShoppingCart.js';
 import { fetchData } from './helpers/imagesProvider.js';
 import LocalStorageContext from './context/LocalStorageContext.js';
 import useStorage from './hook/hook.js';
 function App() {
   const dispatch = useDispatch();
-  const [
-    productsLS,
-    setItemsLS,
-    findProductById,
-    updateProductAmount,
-    addItem,
-  ] = useStorage('shoppingCart');
+  const [productsLS, setItemsLS, findProductById, addItem, removeItem] =
+    useStorage('shoppingCart');
   useEffect(() => {
     console.log('app rendering');
     const fetchProducts = async () => {
@@ -51,8 +47,8 @@ function App() {
         productsLS,
         setItemsLS,
         findProductById,
-        updateProductAmount,
         addItem,
+        removeItem,
       }}
     >
       <SharedFunctionProvider>
@@ -65,6 +61,7 @@ function App() {
 
               <Route path="/category/:slug/:page" element={<CategoryPage />} />
               <Route path="/product/:id" element={<Product />} />
+              <Route path="/cart" element={<ShoppingCart />} />
               {/*      <Route path="*" element={<NotFound/>} />*/}
             </Routes>
           </Router>

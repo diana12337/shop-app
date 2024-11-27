@@ -23,6 +23,15 @@ export default function useStorage(productName, productsToUpdate = []) {
 
     window.localStorage.setItem(productName, JSON.stringify(data));
   };
+  const removeItem = (id) => {
+    const itemsWithoutRemoved = productsLS.filter((item) => item.id !== id);
+
+    setProducts(itemsWithoutRemoved);
+    window.localStorage.setItem(
+      productName,
+      JSON.stringify(itemsWithoutRemoved)
+    );
+  };
   const findProductById = (id) => {
     return productsLS.find((product) => product.id === id);
   };
@@ -43,17 +52,6 @@ export default function useStorage(productName, productsToUpdate = []) {
       setItemsLS(newS);
     }
   };
-  const updateProductAmount = (id /* , newAmount */) => {
-    const updatedProducts = productsLS.map((product) =>
-      product.id === id ? { ...product, amount: product.amount + 1 } : product
-    );
-    setItemsLS(updatedProducts);
-  };
-  return [
-    productsLS,
-    setItemsLS,
-    findProductById,
-    updateProductAmount,
-    addItem,
-  ];
+
+  return [productsLS, setItemsLS, findProductById, addItem, removeItem];
 }
