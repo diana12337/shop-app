@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout.js';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,27 +11,30 @@ import LocalStorageContext from '../../context/LocalStorageContext.js';
 function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [counter, setCounter] = useState(1);
+
   const currentProduct = useSelector((state) => state.quickViewProduct);
   useEffect(() => {
     dispatch(getProduct('products', id));
   }, [dispatch, id]);
 
-  /*   if (!currentProduct) {
-    return <div>Loading...</div>;
-  } */
-
+  const handleDesc = () => {
+    if (counter > 1) {
+      setCounter(counter - 1);
+    } else {
+      setCounter(counter);
+    }
+  };
   const { addCartItem } = useContext(LocalStorageContext);
-  /*   const products = useSelector((state) => state.products); */
+
   const images = useSelector((state) => state.images);
 
-  /*  const product = products.find((p) => p.id === Number(id)); */
-  console.log(currentProduct.description, id, 'ssprodussssssssscts');
   const handleAddingProduct = () => {
     const newItem = {
       id: currentProduct.id,
       name: currentProduct.product_name,
       price: currentProduct.price,
-      amount: 1,
+      amount: counter,
     };
 
     addCartItem(newItem);
@@ -61,7 +64,11 @@ function ProductDetail() {
 
           <p>Price:{currentProduct.price}$</p>
           <div>
-            <ProductCounter />
+            <ProductCounter
+              handleDesc={() => handleDesc()}
+              handleAsc={() => setCounter(counter + 1)}
+              state={counter}
+            />
             <Button
               text="add to cart"
               buttonStyle="buttonAddProduct"

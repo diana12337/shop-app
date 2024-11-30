@@ -16,24 +16,6 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
     return null;
   }
 
-  /*   const addItem = (newItem) => {
-    const existingProductIndex = productsLS.findIndex(
-      (item) => item.id === newItem.id
-    );
-
-    if (existingProductIndex >= 0) {
-      const di = productsLS.map((productLS) =>
-        productLS.id === product.id
-          ? { ...productLS, amount: productLS.amount + 1 }
-          : productLS
-      );
-      setItemsLS(di);
-    } else {
-      const newS = [...productsLS, newItem];
-      setItemsLS(newS);
-    }
-  };
- */
   const handleAddingProduct = () => {
     const newItem = {
       id: product.id,
@@ -53,35 +35,42 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
     <StyledQuickView>
       <section>
         <article>
-          {' '}
-          {images.map(
-            (image) =>
-              image.name === product.image && (
-                <img
-                  key={image.id}
-                  src={image.url}
-                  alt={product.product_name}
-                />
-              )
-          )}{' '}
-          <h1>{product.product_name}</h1>
-          <p>{product.description}</p>
-          <p>
-            <span>Ingredients</span>
-            {product.ingredients}
-          </p>
-          <p>Price:{product.price}$</p>
+          <div>
+            {' '}
+            {images.map(
+              (image) =>
+                image.name === product.image && (
+                  <img
+                    key={image.id}
+                    src={image.url}
+                    alt={product.product_name}
+                  />
+                )
+            )}{' '}
+          </div>
+          <div>
+            <h1>{product.product_name}</h1>
+            <p>{product.description}</p>
+            <p>
+              <div>Price</div>
+              {Number(product.price).toFixed(2)}$
+            </p>
+
+            <p>
+              <div>Ingredients</div>
+              {product.ingredients.join(',')}
+            </p>
+          </div>
         </article>
         <div>
           <Button
-            text="to shopping cart"
+            text="ADD PRODUCT"
             onClick={() => handleAddingProduct()}
-
-            /*     buttonStyle="buttonConfirmBox"  */
+            buttonStyle="buttonAddProduct"
           />
           <Button
-            text="return to shop"
-            /*  buttonStyle="buttonConfirmBox"  */
+            text="RETURN TO SHOP"
+            buttonStyle="buttonAddProduct"
             onClick={() => {
               showQuickView(false);
               dispatch(setQuickViewProduct(''));

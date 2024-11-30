@@ -3,54 +3,25 @@ import Layout from '../../components/Layout/Layout.js';
 import StyledShoppingCart from './ShoppingCart.styled.js';
 import Button from '../../components/Button/Button.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
+import ProductList from '../../components/ProductList/ProductList.js';
 function ShoppingCart() {
-  const { cart, removeCartItem } = useContext(LocalStorageContext);
-  const handleRemoveItem = (id) => {
-    removeCartItem(id);
-  };
+  const { cart } = useContext(LocalStorageContext);
+
   return (
     <Layout>
       {cart.length > 0 ? (
         <StyledShoppingCart>
-          <div>My shopping cart</div>
           <section>
-            <article>
-              {' '}
-              <table>
-                <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Amount</th>
-                  <th>Total</th>
-                  <th>ddd</th>
-                </tr>
-                {cart.map((product, index) => (
-                  <tr key={index}>
-                    {' '}
-                    <td>{product.name}</td>
-                    <td>{product.price}$</td>
-                    <td>{product.amount}</td>
-                    <td>{product.amount * product.price} $</td>
-                    <td>
-                      <Button
-                        text="DELETE"
-                        onClick={() => handleRemoveItem(product.id)}
-                      />
-                    </td>
-                  </tr>
-                ))}
-              </table>
-              <h2>Product list</h2>
-            </article>
+            <ProductList />
             <article>
               {' '}
               <h2>Order summary</h2>
-              <p>subtotal</p>
-              <p>shipping</p>
+              <p>SHIPPING</p>
               <p>
                 TOTAL:{' '}
                 {cart.reduce(
-                  (accumulator, product) => accumulator + product.price,
+                  (accumulator, product) =>
+                    accumulator + product.price * product.amount,
                   0
                 )}
               </p>

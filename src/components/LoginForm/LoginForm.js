@@ -22,7 +22,6 @@ function LoginForm() {
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
 
-    // Update state with new value
     setLoginState((prevState) => {
       const newState = {
         ...prevState,
@@ -49,17 +48,7 @@ function LoginForm() {
       console.log(error.message);
     }
   };
-  /*  const handleFieldChange = (e) => {
-    const { name, value } = e.target;
 
-    if (isFieldNameCorrect(name, loginState)) {
-      setLoginState((prevState) => ({
-        ...prevState,
-        [name]: value,
-      }));
-    }
-  };
- */
   const allLoggingFields = fields.loginForm.map((field) => (
     <Input
       key={field.id}
@@ -71,9 +60,10 @@ function LoginForm() {
   ));
   return (
     <StyledLoginForm>
+      <h1>SIGN IN</h1>
       <form action="" onSubmit={handleLogging}>
         {allLoggingFields}
-        <Button buttonType="buttonForm" text="login" type="submit" />
+        <Button buttonStyle="buttonAddProduct" text="login" type="submit" />
       </form>
     </StyledLoginForm>
   );

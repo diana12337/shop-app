@@ -6,16 +6,30 @@ const StyledHeader = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-
+  align-items: flex-end;
   border-bottom: 1px solid grey;
 
   div {
-    width: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    justify-content: flex-end;
+
+    justify-content: space-between;
+  }
+  section {
+    position: relative;
+  }
+  span {
+    position: absolute;
+    border-radius: 50%;
+    padding: 5px;
+    width: 10px;
+    font-size: 12px;
+    background: black;
+    text-align: center;
+    color: white;
+    left: 15px;
+    bottom: 20px;
   }
 `;
 

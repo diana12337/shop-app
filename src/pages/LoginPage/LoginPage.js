@@ -5,12 +5,12 @@ import Layout from '../../components/Layout/Layout.js';
 import LoginForm from '../../components/LoginForm/LoginForm.js';
 function LoginPage() {
   return (
-    <StyledLoginPage>
-      <Layout>
-        <RegisterForm />
+    <Layout>
+      <StyledLoginPage>
         <LoginForm />
-      </Layout>
-    </StyledLoginPage>
+        <RegisterForm />
+      </StyledLoginPage>
+    </Layout>
   );
 }
 

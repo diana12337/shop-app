@@ -26,9 +26,9 @@ export const theme = {
     buttonAddProduct: css`
       cursor: pointer;
       padding: 10px;
-      color: white;
+      color: whitesmoke;
       background-color: #1f1f1f;
-
+      font-weight: 600;
       border: none;
 
       &:hover {
@@ -52,6 +52,7 @@ export const theme = {
       background-repeat: no-repeat;
       background-position: center;
       padding: 7px;
+      font-weight: 700;
       background-color: white;
       width: 30px;
       color: white;

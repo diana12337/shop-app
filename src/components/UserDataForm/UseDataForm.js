@@ -127,7 +127,6 @@ const UserData = () => {
           type="submit"
         />
       </form>
-      {userDataState.responseFromApi}
     </div>
   );
 };

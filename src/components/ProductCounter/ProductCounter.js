@@ -2,12 +2,12 @@ import React from 'react';
 import StyledProductCounter from './ProductCounter.styled.js';
 import Button from '../Button/Button.js';
 
-function ProductCounter() {
+function ProductCounter({ handleDesc, handleAsc, state }) {
   return (
     <StyledProductCounter>
-      <Button text="-" />
-      <p>1</p>
-      <Button text="+" />
+      <Button text="-" onClick={handleDesc} />
+      <p>{state}</p>
+      <Button text="+" onClick={handleAsc} />
     </StyledProductCounter>
   );
 }

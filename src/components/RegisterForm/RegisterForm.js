@@ -105,9 +105,10 @@ function RegisterForm() {
 
   return (
     <RegisterFormStyled>
+      <h1>Create an account</h1>
       <form action="" onSubmit={handleSubmit}>
         {allRegisterFields}
-        <Button buttonType="buttonAddProduct" text="dodaj" type="submit" />
+        <Button buttonStyle="buttonAddProduct" text="dodaj" type="submit" />
       </form>
     </RegisterFormStyled>
   );

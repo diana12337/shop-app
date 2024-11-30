@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const InputStyled = styled.div`
+  width: 100%;
+
   div {
     position: relative;
     margin: 15px;
@@ -13,6 +15,7 @@ const InputStyled = styled.div`
 
     font-size: 16px;
     border: none;
+
     border-bottom: 1px solid black;
     outline: none;
 

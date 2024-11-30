@@ -20,7 +20,7 @@ export default function useShoppingCart(initialData = []) {
         setUser(currentUser);
         const cartSnapshot = await getDoc(cartDoc);
 
-        if (cartSnapshot.exists()) {
+        if (cartSnapshot.data().items) {
           setCart(cartSnapshot.data().items);
         } else {
           // If no cart exists in Firestore, initialize with initial data
@@ -72,7 +72,7 @@ export default function useShoppingCart(initialData = []) {
     const existingCartItemIndex = cart.findIndex(
       (item) => item.id === newItem.id
     );
-
+    console.log(existingCartItemIndex, 'cartindex');
     if (existingCartItemIndex >= 0) {
       const updatedCart = cart.map((item) =>
         item.id === newItem.id ? { ...item, amount: item.amount + 1 } : item

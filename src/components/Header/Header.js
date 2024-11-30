@@ -8,38 +8,62 @@ import account from '../../img/account.png';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 
 function Header() {
-  const { user } = useContext(LocalStorageContext);
+  const { user, cart } = useContext(LocalStorageContext);
 
   const navigate = useNavigate();
   return (
     <StyledHeader>
       <div>
-        <h1
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          Logo
-        </h1>
-        <Button
-          buttonStyle="headerButton"
-          background={account}
-          onClick={() => {
-            user ? navigate('/userPanel') : navigate('/loginPanel');
-          }}
-        />
-        {user ? (
-          <p
+        <div>
+          <h1
             onClick={() => {
-              navigate('/userPanel');
+              navigate('/');
             }}
           >
-            {user.displayName}
-          </p>
-        ) : (
-          ''
-        )}
-        <Button buttonStyle="headerButton" background={bag} />
+            Logo
+          </h1>
+        </div>
+        <div>
+          <Button
+            buttonStyle="headerButton"
+            background={account}
+            onClick={() => {
+              user ? navigate('/userPanel') : navigate('/loginPanel');
+            }}
+          />
+          {user ? (
+            <p
+              onClick={() => {
+                navigate('/userPanel');
+              }}
+            >
+              {user.displayName}
+            </p>
+          ) : (
+            ''
+          )}
+        </div>
+        <section>
+          <Button
+            buttonStyle="headerButton"
+            background={bag}
+            onClick={() => {
+              navigate('/cart');
+            }}
+          />
+
+          {cart ? (
+            <span>
+              {' '}
+              {cart.reduce(
+                (accumulator, product) => accumulator + product.amount,
+                0
+              )}
+            </span>
+          ) : (
+            <span></span>
+          )}
+        </section>
       </div>
       <Nav />
     </StyledHeader>

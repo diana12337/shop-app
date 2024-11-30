@@ -3,12 +3,12 @@ import { createGlobalStyle } from 'styled-components';
 
 const ResetStyle = createGlobalStyle`
 * {
-  font-family: "Montserrat", sans-serif;
-margin :0;
-padding: 0;
-box-sizing: border-box; 
-font-style: normal;
+ font-family: "Yrsa", serif;
+  font-optical-sizing: auto;
+ 
+  font-style: normal;
 }
+
 `;
 
 export default ResetStyle;

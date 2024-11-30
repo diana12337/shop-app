@@ -23,7 +23,7 @@ const StyledQuickView = styled.div`
     flex: 1;
     min-width: 200px;
     display: flex;
-    flex-direction: column;
+
     gap: 1rem;
   }
   img {
@@ -31,7 +31,6 @@ const StyledQuickView = styled.div`
     height: 250px;
   }
   div {
-    display: flex;
     gap: 10px;
     justify-content: center;
     margin: 10px;
@@ -39,6 +38,10 @@ const StyledQuickView = styled.div`
     border: none;
     border-radius: 4px;
     cursor: pointer;
+  }
+
+  button {
+    margin-left: 1rem;
   }
 `;
 

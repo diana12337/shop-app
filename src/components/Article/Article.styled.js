@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-const StyledArticle = styled.main`
+const StyledArticle = styled.div`
+  width: 200px;
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+  }
   a {
     text-decoration: none;
     color: black;
