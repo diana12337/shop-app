@@ -20,7 +20,7 @@ function ProductDetail() {
     return <div>Loading...</div>;
   } */
 
-  const { addItem } = useContext(LocalStorageContext);
+  const { addCartItem } = useContext(LocalStorageContext);
   /*   const products = useSelector((state) => state.products); */
   const images = useSelector((state) => state.images);
 
@@ -34,7 +34,7 @@ function ProductDetail() {
       amount: 1,
     };
 
-    addItem(newItem, currentProduct);
+    addCartItem(newItem);
   };
   return (
     <Layout>

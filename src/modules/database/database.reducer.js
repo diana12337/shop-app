@@ -4,6 +4,7 @@ const initState = {
   images: '',
   currentProduct: '',
   quickViewProduct: '',
+  userLogged: '',
 };
 
 export const reducer = (state = initState, action) => {
@@ -16,6 +17,8 @@ export const reducer = (state = initState, action) => {
       return { ...state, currentProduct: action.payload.product };
     case types.SET_QUICKVIEW_PRODUCT:
       return { ...state, quickViewProduct: action.payload.product };
+    case types.SET_LOGGED_USER:
+      return { ...state, userLogged: action.payload.USER };
 
     default:
       return state;

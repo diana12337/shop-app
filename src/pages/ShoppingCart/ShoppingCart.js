@@ -4,14 +4,13 @@ import StyledShoppingCart from './ShoppingCart.styled.js';
 import Button from '../../components/Button/Button.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 function ShoppingCart() {
-  const { productsLS, removeItem } = useContext(LocalStorageContext);
+  const { cart, removeCartItem } = useContext(LocalStorageContext);
   const handleRemoveItem = (id) => {
-    console.log(id, 'ddd');
-    removeItem(id);
+    removeCartItem(id);
   };
   return (
     <Layout>
-      {productsLS.length > 0 ? (
+      {cart.length > 0 ? (
         <StyledShoppingCart>
           <div>My shopping cart</div>
           <section>
@@ -25,7 +24,7 @@ function ShoppingCart() {
                   <th>Total</th>
                   <th>ddd</th>
                 </tr>
-                {productsLS.map((product, index) => (
+                {cart.map((product, index) => (
                   <tr key={index}>
                     {' '}
                     <td>{product.name}</td>
@@ -50,7 +49,7 @@ function ShoppingCart() {
               <p>shipping</p>
               <p>
                 TOTAL:{' '}
-                {productsLS.reduce(
+                {cart.reduce(
                   (accumulator, product) => accumulator + product.price,
                   0
                 )}

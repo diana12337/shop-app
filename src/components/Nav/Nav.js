@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Nav() {
   const products = useSelector((state) => state.products);
+
   if (products.length > 0) {
     const categories = Array.from(
       new Set(products.map((item) => item.category))

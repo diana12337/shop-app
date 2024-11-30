@@ -7,8 +7,7 @@ import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { setQuickViewProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
-  const { /* productsLS, setItemsLS */ addItem } =
-    useContext(LocalStorageContext);
+  const { addCartItem } = useContext(LocalStorageContext);
   const navigate = useNavigate();
   const { quickView, showQuickView } = quickViewFunction();
   const dispatch = useDispatch();
@@ -33,8 +32,8 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
       const newS = [...productsLS, newItem];
       setItemsLS(newS);
     }
-  }; */
-
+  };
+ */
   const handleAddingProduct = () => {
     const newItem = {
       id: product.id,
@@ -43,7 +42,7 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
       amount: 1,
     };
 
-    addItem(newItem, product);
+    addCartItem(newItem, product);
 
     showQuickView(false);
     dispatch(setQuickViewProduct(''));

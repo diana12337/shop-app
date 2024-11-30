@@ -14,6 +14,9 @@ export const setCurrentProduct = (product) => {
 export const setQuickViewProduct = (product) => {
   return { type: types.SET_QUICKVIEW_PRODUCT, payload: { product } };
 };
+export const setLoggedUser = (user) => {
+  return { type: types.SET_LOGGED_USER, payload: { user } };
+};
 
 export const getProduct = (collection, id) => async (dispatch) => {
   const api = new ExchangeApi(collection);
@@ -22,3 +25,22 @@ export const getProduct = (collection, id) => async (dispatch) => {
 
   dispatch(setQuickViewProduct(data));
 };
+
+export const updatePassword = async (currentPassword, newPassword) => {
+  const api = new ExchangeApi();
+
+  await api.updateUserPassword(currentPassword, newPassword);
+};
+
+export const updateData = async (first, last, email, currentPassword) => {
+  const api = new ExchangeApi();
+
+  await api.sendVerificationEmail(first, last, email, currentPassword);
+};
+
+/* export const changeDataInFirestore = async (firstName, lastName, newEmail) => {
+  const api = new ExchangeApi();
+
+  await api.listenForEmailVerification(firstName, lastName, newEmail);
+};
+ */

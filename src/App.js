@@ -13,24 +13,34 @@ import ResetStyle from './styled/Reset.js';
 import { SharedFunctionProvider } from './context/QuickViewContext.js';
 import CategoryPage from './pages/CategoryPage/CategoryPage.js';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart.js';
+/* import LoginPage from './pages/LoginPage/LoginPage.js'; */
 import { fetchData } from './helpers/imagesProvider.js';
 import LocalStorageContext from './context/LocalStorageContext.js';
+import UserPage from './pages/UserPage/UserPage.js';
 import useStorage from './hook/hook.js';
+import LoginPage from './pages/LoginPage/LoginPage.js';
 function App() {
   const dispatch = useDispatch();
-  const [productsLS, setItemsLS, findProductById, addItem, removeItem] =
-    useStorage('shoppingCart');
+  const [
+    cart,
+    user,
+    setCartItems,
+    findCartItemById,
+    addCartItem,
+    removeCartItem,
+  ] = useStorage();
+
   useEffect(() => {
     console.log('app rendering');
     const fetchProducts = async () => {
       const productsCollection = collection(db, 'products');
 
       const productsSnapshot = await getDocs(productsCollection);
+
       const productsList = productsSnapshot.docs.map((doc) => doc.data());
 
       dispatch(setProducts(productsList));
     };
-
     const fetchImages = async () => {
       /*  const response = await fetch('http://localhost:3001/images'); */
       /*  const data = await response.json(); */
@@ -41,14 +51,16 @@ function App() {
     fetchProducts();
     fetchImages();
   }, [dispatch]);
+
   return (
     <LocalStorageContext.Provider
       value={{
-        productsLS,
-        setItemsLS,
-        findProductById,
-        addItem,
-        removeItem,
+        cart,
+        user,
+        setCartItems,
+        findCartItemById,
+        addCartItem,
+        removeCartItem,
       }}
     >
       <SharedFunctionProvider>
@@ -62,6 +74,9 @@ function App() {
               <Route path="/category/:slug/:page" element={<CategoryPage />} />
               <Route path="/product/:id" element={<Product />} />
               <Route path="/cart" element={<ShoppingCart />} />
+              {/*  <Route path="/loginPanel" element={<LoginPage />} /> */}
+              <Route path="/userPanel" element={<UserPage />} />
+              <Route path="/loginPanel" element={<LoginPage />} />
               {/*      <Route path="*" element={<NotFound/>} />*/}
             </Routes>
           </Router>

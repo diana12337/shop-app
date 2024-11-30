@@ -1,57 +1,95 @@
 import { useEffect, useState } from 'react';
+import { db, auth } from '../firebase.js'; // Adjust the import path as necessary
+import {
+  /*  collection, getDocs, */ doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 
-export default function useStorage(productName, productsToUpdate = []) {
-  const [productsLS, setProducts] = useState(productsToUpdate);
+export default function useShoppingCart(initialData = []) {
+  const [cart, setCart] = useState(initialData);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const currentProducts = JSON.parse(
-      window.localStorage.getItem(productName)
-    );
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        // User is logged in, fetch cart data from Firestore
+        const cartDoc = doc(db, 'carts', currentUser.uid);
+        setUser(currentUser);
+        const cartSnapshot = await getDoc(cartDoc);
 
-    if (currentProducts === null || currentProducts.length === 0) {
-      window.localStorage.setItem(
-        productName,
-        JSON.stringify(productsToUpdate)
-      );
-    } else {
-      setProducts(currentProducts);
-    }
+        if (cartSnapshot.exists()) {
+          setCart(cartSnapshot.data().items);
+        } else {
+          // If no cart exists in Firestore, initialize with initial data
+          await setDoc(cartDoc, { items: initialData });
+          setCart(initialData);
+        }
+        setUser(currentUser);
+      } else {
+        // User is not logged in, use local storage
+        const localCart =
+          JSON.parse(window.localStorage.getItem('shoppingCart')) ||
+          initialData;
+        setCart(localCart);
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const setItemsLS = (data) => {
-    setProducts(data);
+  const setCartItems = async (newData) => {
+    setCart(newData);
+    console.log(newData, 'newData');
+    if (user) {
+      // Save cart data to Firestore
+      try {
+        const cartDoc = doc(db, 'carts', user.uid);
+        await updateDoc(cartDoc, {
+          items: newData, // Update with new data
+        });
+        console.log('Cart updated successfully');
+      } catch (error) {
+        console.error('Error updating cart:', error);
+      }
+    } else {
+      // Save cart data to local storage
+      window.localStorage.setItem('shoppingCart', JSON.stringify(newData));
+    }
+  };
 
-    window.localStorage.setItem(productName, JSON.stringify(data));
+  const removeCartItem = (id) => {
+    const updatedCart = cart.filter((item) => item.id !== id);
+    setCartItems(updatedCart);
   };
-  const removeItem = (id) => {
-    const itemsWithoutRemoved = productsLS.filter((item) => item.id !== id);
 
-    setProducts(itemsWithoutRemoved);
-    window.localStorage.setItem(
-      productName,
-      JSON.stringify(itemsWithoutRemoved)
-    );
-  };
-  const findProductById = (id) => {
-    return productsLS.find((product) => product.id === id);
-  };
-  const addItem = (newItem, product) => {
-    const existingProductIndex = productsLS.findIndex(
+  const findCartItemById = (id) => cart.find((item) => item.id === id);
+
+  const addCartItem = (newItem) => {
+    const existingCartItemIndex = cart.findIndex(
       (item) => item.id === newItem.id
     );
 
-    if (existingProductIndex >= 0) {
-      const di = productsLS.map((productLS) =>
-        productLS.id === product.id
-          ? { ...productLS, amount: productLS.amount + 1 }
-          : productLS
+    if (existingCartItemIndex >= 0) {
+      const updatedCart = cart.map((item) =>
+        item.id === newItem.id ? { ...item, amount: item.amount + 1 } : item
       );
-      setItemsLS(di);
+      setCartItems(updatedCart);
     } else {
-      const newS = [...productsLS, newItem];
-      setItemsLS(newS);
+      const updatedCart = [...cart, newItem];
+      setCartItems(updatedCart);
     }
   };
 
-  return [productsLS, setItemsLS, findProductById, addItem, removeItem];
+  return [
+    cart,
+    user,
+    setCartItems,
+    findCartItemById,
+    addCartItem,
+    removeCartItem,
+  ];
 }
