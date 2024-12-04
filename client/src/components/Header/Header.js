@@ -20,7 +20,7 @@ function Header() {
               navigate('/');
             }}
           >
-            Logo
+            ShoppApp
           </h1>
         </div>
         <div>

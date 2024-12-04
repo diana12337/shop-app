@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import StyledProductList from './ProductList.styled.js';
 import Button from '../Button/Button.js';
 import { useSelector } from 'react-redux';
+/* import bin from '../../img/bin.png'; */
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 function ProductList() {
   const { cart, removeCartItem } = useContext(LocalStorageContext);
@@ -10,10 +11,9 @@ function ProductList() {
   const handleRemoveItem = (id) => {
     removeCartItem(id);
   };
-  console.log(images);
+  console.log(images, cart);
   return (
     <StyledProductList>
-      <h2>PRODUCT LIST</h2>{' '}
       <table>
         <tr>
           <th>Product</th>
@@ -27,17 +27,19 @@ function ProductList() {
             {' '}
             <td>
               <Link to={`/product/${product.id}`}>
-                {images.map(
-                  (image) =>
-                    image.name === product.image && (
-                      <img
-                        key={image.id}
-                        src={image.url}
-                        alt={product.product_name}
-                      />
-                    )
-                )}
-                {product.name}{' '}
+                <div>
+                  {images.map(
+                    (image) =>
+                      image.name === product.image && (
+                        <img
+                          key={image.id}
+                          src={image.url}
+                          alt={product.product_name}
+                        />
+                      )
+                  )}
+                  <p> {product.name}</p>{' '}
+                </div>
               </Link>
             </td>
             <td>{product.price}$</td>
@@ -45,7 +47,8 @@ function ProductList() {
             <td>{product.amount * product.price} $</td>
             <td>
               <Button
-                text="DELETE"
+                /*  background={bin} */
+                text="REMOVE"
                 onClick={() => handleRemoveItem(product.id)}
               />
             </td>

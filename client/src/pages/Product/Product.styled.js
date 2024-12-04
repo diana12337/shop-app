@@ -3,7 +3,9 @@ import styled from 'styled-components';
 const StyledProduct = styled.section`
   display: flex;
   gap: 1rem;
+
   justify-content: center;
+
   section {
     flex: 1;
   }

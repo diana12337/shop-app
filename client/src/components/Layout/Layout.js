@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header.js';
-
+import FooterNav from '../FooterNav/FooterNav.js';
 import Footer from '../Footer/Footer.js';
 
 function Layout({ children }) {
@@ -9,6 +9,7 @@ function Layout({ children }) {
       <Header />
 
       {children}
+      <FooterNav />
       <Footer />
     </div>
   );

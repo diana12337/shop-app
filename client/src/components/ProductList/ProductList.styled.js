@@ -3,10 +3,8 @@ import styled from 'styled-components';
 const StyledProductList = styled.article`
   display: block;
 
-  h2 {
-    font-size: 26px;
-    font-weight: 400;
-  }
+  width: 60%;
+
   table {
     border-collapse: collapse;
 
@@ -15,7 +13,12 @@ const StyledProductList = styled.article`
 
     align-items: center;
   }
+  th {
+    font-size: 16px;
+    font-weight: 600;
 
+    border-bottom: 1px solid black;
+  }
   th,
   td {
     padding: 8px;
@@ -23,13 +26,45 @@ const StyledProductList = styled.article`
     margin: 0;
   }
   td {
-    border-bottom: 2px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
   td {
     padding-bottom: 20px;
     padding-top: 20px;
     text-align: center;
     vertical-align: middle;
+  }
+  img {
+    width: 20%;
+    height: 70px;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  div {
+    display: flex;
+    gap: 20px;
+
+    justify-content: flex-start;
+    align-items: center;
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    font-size: 12px;
+    border-bottom: 1px solid black;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+
+    opacity: 0.6;
+    text-align: center;
+    &:hover {
+      opacity: 1;
+      color: red;
+      border-bottom: 1px solid red;
+    }
   }
 `;
 

@@ -2,19 +2,21 @@ import styled from 'styled-components';
 
 const StyledHeader = styled.header`
   font-size: 18px;
-
+  border-bottom: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  border-bottom: 1px solid grey;
-
+  h1 {
+    margin: 0;
+  }
   div {
-    width: 50%;
+    width: 66%;
     display: flex;
     align-items: center;
-
-    justify-content: space-between;
+    gap: 20px;
+    justify-content: flex-end;
+    margin-right: 2rem;
   }
   section {
     position: relative;

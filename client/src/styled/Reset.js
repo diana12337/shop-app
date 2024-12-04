@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const ResetStyle = createGlobalStyle`
 * {
- font-family: "Yrsa", serif;
+  font-family: "Onest", sans-serif;
   font-optical-sizing: auto;
  
   font-style: normal;

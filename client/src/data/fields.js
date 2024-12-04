@@ -115,4 +115,44 @@ export const fields = {
       required: true,
     },
   ],
+  addressForm: [
+    {
+      name: 'firstName',
+      type: 'text',
+      placeholder: '',
+      label: 'Imię',
+      required: true,
+    },
+    {
+      name: 'lastName',
+      type: 'text',
+      placeholder: '',
+      label: 'Nazwisko',
+      required: true,
+    },
+    {
+      name: 'address',
+      type: 'text',
+      placeholder: '',
+      label: 'ulica',
+
+      required: true,
+    },
+    {
+      name: 'zipCode',
+      type: '',
+      placeholder: '00-205',
+      label: 'zipcode',
+
+      required: true,
+    },
+    {
+      name: 'city',
+      type: 'text',
+      placeholder: 'Kraków',
+      label: 'city',
+
+      required: true,
+    },
+  ],
 };

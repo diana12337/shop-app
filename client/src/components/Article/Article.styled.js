@@ -2,9 +2,15 @@ import styled from 'styled-components';
 
 const StyledArticle = styled.div`
   width: 200px;
+  text-align: left;
   h2 {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
   }
   a {
     text-decoration: none;

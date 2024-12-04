@@ -8,12 +8,30 @@ export const quickViewFunction = () => {
 
 export const SharedFunctionProvider = ({ children }) => {
   const [quickView, setShowQuickView] = useState(false);
-
+  const [cartQuickView, setCartQuickView] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const showQuickView = (isShown) => {
     setShowQuickView(isShown);
   };
+
+  const showCartQuickView = (isShown) => {
+    setCartQuickView(isShown);
+  };
+  const toggleQuickView = (isShown) => {
+    setExpanded(isShown);
+  };
+
   return (
-    <QuickViewContext.Provider value={{ quickView, showQuickView }}>
+    <QuickViewContext.Provider
+      value={{
+        quickView,
+        showQuickView,
+        cartQuickView,
+        showCartQuickView,
+        toggleQuickView,
+        expanded,
+      }}
+    >
       {children}
     </QuickViewContext.Provider>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { db } from './firebase.js';
+import { CartProvider } from './context/ShoppingCartContext.js';
 import { useDispatch } from 'react-redux';
 import { collection, getDocs } from 'firebase/firestore';
 import { setImages } from '../src/modules/database/database.actions.js';
@@ -10,6 +11,7 @@ import Product from './pages/Product/Product.js';
 import { theme } from './theme/theme.js';
 import { ThemeProvider } from 'styled-components';
 import ResetStyle from './styled/Reset.js';
+import Checkout from './pages/Checkout/Checkout.js';
 import { SharedFunctionProvider } from './context/QuickViewContext.js';
 import CategoryPage from './pages/CategoryPage/CategoryPage.js';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart.js';
@@ -21,6 +23,8 @@ import useStorage from './hook/hook.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
 import PurchaseOptions from './pages/PurchaseOptions/PurchaseOptions.js';
 import PurchaseConfirmation from './pages/PurchaseConfirmation/index.js';
+
+import About from './pages/About/About.js';
 function App() {
   const dispatch = useDispatch();
   const [
@@ -67,27 +71,34 @@ function App() {
     >
       <SharedFunctionProvider>
         <ThemeProvider theme={theme}>
-          <Router>
-            <Routes>
-              <Route exact path="/" element={<Homepage />} />
-              <Route exact path="/home" element={<Homepage />} />
-              {/*      <Route exact path="/about"><About /> </Route> */}
+          <CartProvider>
+            <Router>
+              <Routes>
+                <Route exact path="/" element={<Homepage />} />
+                <Route exact path="/home" element={<Homepage />} />
+                <Route path="/about" element={<About />} />
+                {/*      <Route exact path="/about"><About /> </Route> */}
 
-              <Route path="/category/:slug/:page" element={<CategoryPage />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/cart" element={<ShoppingCart />} />
+                <Route
+                  path="/category/:slug/:page"
+                  element={<CategoryPage />}
+                />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/cart" element={<ShoppingCart />} />
 
-              <Route path="/userPanel" element={<UserPage />} />
-              <Route path="/loginPanel" element={<LoginPage />} />
-              <Route path="/cart/order" element={<PurchaseOptions />} />
-              <Route
-                path="/cart/order-success"
-                element={<PurchaseConfirmation />}
-              />
-              {/*      <Route path="*" element={<NotFound/>} />*/}
-            </Routes>
-          </Router>
-          <ResetStyle />
+                <Route path="/userPanel" element={<UserPage />} />
+                <Route path="/loginPanel" element={<LoginPage />} />
+                <Route path="/cart/order" element={<PurchaseOptions />} />
+                <Route path="/cart/checkout" element={<Checkout />} />
+                <Route
+                  path="/cart/order-success"
+                  element={<PurchaseConfirmation />}
+                />
+                {/*      <Route path="*" element={<NotFound/>} />*/}
+              </Routes>
+            </Router>
+            <ResetStyle />
+          </CartProvider>
         </ThemeProvider>
       </SharedFunctionProvider>
     </LocalStorageContext.Provider>

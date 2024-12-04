@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import StyledMain from './Main.styled.js';
 import ProductQuickView from '../ProductQuickView/ProductQuickView.js';
 import Article from '../Article/Article.js';
+import CartQuickView from '../CartQuickView/CartQuickView.js';
 
 function Main() {
   const quickviewProduct = useSelector((state) => state.quickViewProduct);
@@ -18,10 +19,8 @@ function Main() {
             <Article key={index} images={images} product={product} />
           ))}
       </StyledMain>
-      <ProductQuickView
-        product={quickviewProduct}
-        message="Are you sure you want to remove this item?"
-      />
+      <ProductQuickView product={quickviewProduct} />
+      <CartQuickView images={images} />
     </>
   );
 }

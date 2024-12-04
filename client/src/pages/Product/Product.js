@@ -4,15 +4,16 @@ import Layout from '../../components/Layout/Layout.js';
 import { useSelector, useDispatch } from 'react-redux';
 import StyledProduct from './Product.styled.js';
 import Button from '../../components/Button/Button.js';
+import CartQuickView from '../../components/CartQuickView/CartQuickView.js';
 import ProductCounter from '../../components/ProductCounter/ProductCounter.js';
 import { getProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
-
+import { quickViewFunction } from '../../context/QuickViewContext.js';
 function ProductDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(1);
-
+  const { showCartQuickView } = quickViewFunction();
   const currentProduct = useSelector((state) => state.quickViewProduct);
   useEffect(() => {
     dispatch(getProduct('products', id));
@@ -35,9 +36,11 @@ function ProductDetail() {
       name: currentProduct.product_name,
       price: currentProduct.price,
       amount: counter,
+      image: currentProduct.category.split(' ').join('-').toLowerCase(),
     };
 
     addCartItem(newItem);
+    showCartQuickView(true);
   };
   return (
     <Layout>
@@ -77,6 +80,7 @@ function ProductDetail() {
           </div>
         </article>
       </StyledProduct>
+      <CartQuickView images={images} />
     </Layout>
   );
 }

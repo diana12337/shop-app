@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom'; */
 import StyledQuickView from './ProductQuickView.styled.js';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button/Button.js';
+import cross from '../../img/cross.png';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { setQuickViewProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
   const { addCartItem } = useContext(LocalStorageContext);
-  const navigate = useNavigate();
-  const { quickView, showQuickView } = quickViewFunction();
+  /*   const navigate = useNavigate(); */
+  const { quickView, showQuickView, showCartQuickView } = quickViewFunction();
   const dispatch = useDispatch();
   const images = useSelector((state) => state.images);
   if (!quickView || !product) {
@@ -22,14 +23,14 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
       name: product.product_name,
       price: product.price,
       amount: 1,
+      image: product.category.split(' ').join('-').toLowerCase(),
     };
 
     addCartItem(newItem, product);
 
     showQuickView(false);
     dispatch(setQuickViewProduct(''));
-
-    navigate('/cart');
+    showCartQuickView(true);
   };
   return (
     <StyledQuickView>
@@ -51,15 +52,12 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
           <div>
             <h1>{product.product_name}</h1>
             <p>{product.description}</p>
-            <p>
-              <div>Price</div>
-              {Number(product.price).toFixed(2)}$
-            </p>
+            <p>{Number(product.price).toFixed(2)}$</p>
 
-            <p>
+            {/*    <p>
               <div>Ingredients</div>
               {product.ingredients.join(',')}
-            </p>
+            </p> */}
           </div>
         </article>
         <div>
@@ -69,8 +67,8 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
             buttonStyle="buttonAddProduct"
           />
           <Button
-            text="RETURN TO SHOP"
-            buttonStyle="buttonAddProduct"
+            background={cross}
+            buttonStyle="buttonReturn"
             onClick={() => {
               showQuickView(false);
               dispatch(setQuickViewProduct(''));

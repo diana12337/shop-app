@@ -30,7 +30,7 @@ export const theme = {
       background-color: #1f1f1f;
       font-weight: 600;
       border: none;
-
+      width: 80%;
       &:hover {
         opacity: 0.9;
       }
@@ -59,6 +59,26 @@ export const theme = {
       border: 1px solid black;
       &:hover {
         opacity: 0.9;
+      }
+    `,
+    buttonReturn: css`
+      cursor: pointer;
+      background-size: 70%;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 15px;
+      font-weight: 700;
+      background-color: transparent;
+      width: 35px;
+      color: white;
+      border: none;
+      opacity: 0.8;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      &:hover {
+        opacity: 1;
       }
     `,
   },

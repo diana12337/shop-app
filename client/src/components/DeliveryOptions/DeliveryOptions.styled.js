@@ -1,29 +1,54 @@
 import styled from 'styled-components';
 
 const StyledDeliveryOptions = styled.div`
-  form {
+  background: white;
+  text-align: center;
+  padding: 20px;
+
+  h3 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px;
+    margin-top: 25px;
+    border-bottom: 1px solid black;
+  }
+  div {
     display: flex;
+    gap: 15px;
+
     flex-direction: column;
   }
 
-  li {
-    list-style-type: none;
+  input[type='radio'] {
+    opacity: 0;
+    position: fixed;
+    border: 1px solid lightgrey;
+    width: 0;
   }
+
   label {
-    padding: 20px;
-    width: 100%;
     display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    border: 1px solid black;
+    background: #f8f8f8;
+    font-family: sans-serif, Arial;
+    font-size: 14px;
+    justify-content: space-between;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    padding: 3px 7px 3px 7px;
   }
-  label::checked {
-    border: 2px solid green;
+
+  input[type='radio']:checked + label {
+    border: 4px solid black;
   }
-  span {
-    display: flex;
-    gap: 10px;
-    right: 0;
+
+  label:hover {
+    opacity: 0.7;
+    border: 2px solid grey;
+  }
+
+  input[type='radio']:focus + label {
+    border: 2px solid black;
   }
 `;
 

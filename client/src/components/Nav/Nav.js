@@ -22,7 +22,7 @@ function Nav() {
         <ul>
           {nav}{' '}
           <li>
-            <a>About</a>{' '}
+            <a href="/about">About</a>{' '}
           </li>
         </ul>
       </StyledNav>

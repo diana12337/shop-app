@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 const StyledNav = styled.nav`
   width: 100%;
+
   ul {
     display: flex;
     justify-content: center;
+    flex-direction: row;
     gap: 3rem;
   }
   li {

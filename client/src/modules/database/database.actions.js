@@ -14,6 +14,9 @@ export const setCurrentProduct = (product) => {
 export const setQuickViewProduct = (product) => {
   return { type: types.SET_QUICKVIEW_PRODUCT, payload: { product } };
 };
+export const setQuickViewCart = (cart) => {
+  return { type: types.SET_QUICKVIEW_CART, payload: { cart } };
+};
 export const setLoggedUser = (user) => {
   return { type: types.SET_LOGGED_USER, payload: { user } };
 };
