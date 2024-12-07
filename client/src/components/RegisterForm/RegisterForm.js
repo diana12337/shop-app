@@ -11,7 +11,7 @@ import { validateForm, clearFormFields } from '../../helpers/validateForm.js';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 /* import { signInWithEmailAndPassword } from 'firebase/auth'; */
 import { fields } from '../../data/fields.js';
-function RegisterForm() {
+function RegisterForm({ path }) {
   const navigate = useNavigate();
   const [registerState, setRegisterState] = useState({
     firstName: '',
@@ -37,17 +37,21 @@ function RegisterForm() {
         displayName: `${firstName} ${lastName}`,
       });
       const userDoc = doc(db, 'carts', user.uid);
-      await setDoc(userDoc, {
-        data: [
-          {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-          },
-        ],
-      }),
-        console.log('User created successfully with name and surname');
-      navigate('/');
+      await setDoc(
+        userDoc,
+        {
+          data: [
+            {
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+            },
+          ],
+        },
+        { merge: true }
+      ),
+        console.log('User created successfully with name and surname', userDoc);
+      navigate(path);
     } catch (error) {
       console.log(error.message);
     }
@@ -98,7 +102,7 @@ function RegisterForm() {
       key={field.id}
       field={field}
       handleFieldChange={(e) => handleFieldChange(e)}
-      state={/* this. */ registerState}
+      state={registerState}
       setState={setRegisterState}
     />
   ));

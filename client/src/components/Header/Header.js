@@ -54,7 +54,6 @@ function Header() {
 
           {cart ? (
             <span>
-              {' '}
               {cart.reduce(
                 (accumulator, product) => accumulator + product.amount,
                 0

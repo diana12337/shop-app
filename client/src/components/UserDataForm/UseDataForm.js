@@ -6,6 +6,7 @@ import { db, auth } from '../../firebase.js';
 import { fields } from '../../data/fields.js';
 import Input from '../../components/Input/Input.js';
 import Button from '../../components/Button/Button.js';
+import StyledUserData from './UserDataForm.styled.js';
 import {
   /*  changeDataInFirestore, */
   updateData,
@@ -35,6 +36,7 @@ const UserData = () => {
           (userSnapshot) => {
             if (userSnapshot.data()) {
               const userData = userSnapshot.data().data[0];
+
               setUserDataState({
                 firstName: userData.firstName || '',
                 lastName: userData.lastName || '',
@@ -117,7 +119,7 @@ const UserData = () => {
     }
   };
   return (
-    <div>
+    <StyledUserData>
       <h3>Update User Data</h3>
       <form action="" onSubmit={handleSubmit}>
         {allFields}
@@ -127,7 +129,7 @@ const UserData = () => {
           type="submit"
         />
       </form>
-    </div>
+    </StyledUserData>
   );
 };
 

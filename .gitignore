@@ -1,23 +1,16 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# server/.gitignore
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Ignore node_modules directory
+node_modules/
 
-# testing
-/coverage
+# Ignore compiled files
+dist/
 
-# production
-/build
+# Ignore environment variables file
+.env
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Ignore log files
+*.log
+key.json
+# Specifically ignore package-lock.json in server node_modules directory
+node_modules/.package-lock.json

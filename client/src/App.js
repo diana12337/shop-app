@@ -11,6 +11,7 @@ import Product from './pages/Product/Product.js';
 import { theme } from './theme/theme.js';
 import { ThemeProvider } from 'styled-components';
 import ResetStyle from './styled/Reset.js';
+import AddressToDelivery from './pages/AddressToDelivery/AddressToDelivery.js';
 import Checkout from './pages/Checkout/Checkout.js';
 import { SharedFunctionProvider } from './context/QuickViewContext.js';
 import CategoryPage from './pages/CategoryPage/CategoryPage.js';
@@ -21,8 +22,10 @@ import LocalStorageContext from './context/LocalStorageContext.js';
 import UserPage from './pages/UserPage/UserPage.js';
 import useStorage from './hook/hook.js';
 import LoginPage from './pages/LoginPage/LoginPage.js';
+import PurchaseTerms from './pages/PurchaseTerms/PurchaseTerms.js';
 import PurchaseOptions from './pages/PurchaseOptions/PurchaseOptions.js';
 import PurchaseConfirmation from './pages/PurchaseConfirmation/index.js';
+import OurHistoryPage from './pages/OurHistoryPage/OurHistoryPage.js';
 
 import About from './pages/About/About.js';
 function App() {
@@ -77,6 +80,8 @@ function App() {
                 <Route exact path="/" element={<Homepage />} />
                 <Route exact path="/home" element={<Homepage />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/purchaseTerms" element={<PurchaseTerms />} />
+                <Route path="/ourHistory" element={<OurHistoryPage />} />
                 {/*      <Route exact path="/about"><About /> </Route> */}
 
                 <Route
@@ -90,6 +95,10 @@ function App() {
                 <Route path="/loginPanel" element={<LoginPage />} />
                 <Route path="/cart/order" element={<PurchaseOptions />} />
                 <Route path="/cart/checkout" element={<Checkout />} />
+                <Route
+                  path="/cart/checkout/address"
+                  element={<AddressToDelivery />}
+                />
                 <Route
                   path="/cart/order-success"
                   element={<PurchaseConfirmation />}

@@ -131,11 +131,19 @@ export const fields = {
       required: true,
     },
     {
-      name: 'address',
+      name: 'street',
       type: 'text',
       placeholder: '',
-      label: 'ulica',
+      label: 'street',
 
+      required: true,
+    },
+    {
+      name: 'streetNumber',
+      type: 'text',
+      placeholder: '',
+      label: 'streetNumber',
+      pattern: /^\d+[a-zA-Z]?(?:[-/]\d*[a-zA-Z]?)?$/,
       required: true,
     },
     {
@@ -143,7 +151,7 @@ export const fields = {
       type: '',
       placeholder: '00-205',
       label: 'zipcode',
-
+      pattern: /\d{2}-\d{3}/,
       required: true,
     },
     {

@@ -4,15 +4,16 @@ import StyledArticle from './Article.styled.js';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
+
 import search from '../../img/search.png';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { getProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 
 function Article({ images, product }) {
-  const { showQuickView, showCartQuickView /* toggleQuickView  */ } =
-    quickViewFunction();
+  const { showQuickView, showCartQuickView } = quickViewFunction();
   const { addCartItem } = useContext(LocalStorageContext);
+
   const dispatch = useDispatch();
   const handleQuickView = (product) => {
     showQuickView(true);
@@ -26,20 +27,11 @@ function Article({ images, product }) {
       amount: 1,
       image: product.category.split(' ').join('').toLowerCase(),
     };
-    console.log(newItem, 'sss');
+
     addCartItem(newItem, product);
     showCartQuickView(true);
   };
-  /* const addProduct = () => {
-    const newItem = {
-      id: product.id,
-      name: product.product_name,
-      price: product.price,
-      amount: 1,
-    };
 
-    addCartItem(newItem, product);
-  }; */
   return (
     <StyledArticle>
       <Link to={`/product/${product.id}`}>
@@ -60,7 +52,6 @@ function Article({ images, product }) {
         <Button
           text="ADD PRODUCT"
           buttonStyle="buttonAddProduct"
-          /*    onClick={() => addProduct()} */
           onClick={() => handleCartQuickView()}
         />
         <Button

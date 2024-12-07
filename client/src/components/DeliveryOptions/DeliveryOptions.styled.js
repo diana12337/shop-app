@@ -36,20 +36,21 @@ const StyledDeliveryOptions = styled.div`
     border: 1px solid lightgrey;
     border-radius: 4px;
     padding: 3px 7px 3px 7px;
+    cursor: pointer;
   }
 
   input[type='radio']:checked + label {
-    border: 4px solid black;
+    border: 2px solid black;
+    opacity: 1;
+    font-weight: 700;
   }
 
   label:hover {
     opacity: 0.7;
-    border: 2px solid grey;
-  }
-
-  input[type='radio']:focus + label {
-    border: 2px solid black;
   }
 `;
 
 export default StyledDeliveryOptions;
+/* input[type='radio']:focus + label {
+  border: 2px solid black;
+} */

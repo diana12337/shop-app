@@ -4,7 +4,7 @@ export const validateForm = (fields, state) => {
   /*     const { fieldType, state } = this.props; */
   fields.forEach((field) => {
     if (field.required) {
-      if (state[field.name].length === 0) {
+      if (state[field.name].length < 2) {
         errors[field.name] = 'Field invalid';
       } else {
         errors[field.name] = 'Field valid';

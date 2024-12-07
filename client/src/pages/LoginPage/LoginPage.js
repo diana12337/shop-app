@@ -7,8 +7,8 @@ function LoginPage() {
   return (
     <Layout>
       <StyledLoginPage>
-        <LoginForm />
-        <RegisterForm />
+        <LoginForm path="/" />
+        <RegisterForm path="/" />
       </StyledLoginPage>
     </Layout>
   );

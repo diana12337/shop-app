@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const FooterNav = styled.nav`
   border-top: 1px solid grey;
-
+  background-color: white;
   display: flex;
   width: 100%;
   align-items: flex-start;

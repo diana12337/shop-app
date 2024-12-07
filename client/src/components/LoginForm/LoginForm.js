@@ -10,7 +10,7 @@ import { validateForm } from '../../helpers/validateForm.js';
 
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { fields } from '../../data/fields.js';
-function LoginForm() {
+function LoginForm({ path }) {
   const navigate = useNavigate();
 
   const [loginState, setLoginState] = useState({
@@ -41,7 +41,7 @@ function LoginForm() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      navigate('/');
+      navigate(path);
 
       console.log('User signed in successfully');
     } catch (error) {

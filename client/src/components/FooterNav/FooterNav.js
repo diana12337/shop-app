@@ -12,7 +12,7 @@ function FooterNav() {
           <a href="/about">About</a>{' '}
         </li>
         <li>
-          <a>Our history</a>{' '}
+          <a href="/ourHistory">Our history</a>{' '}
         </li>
       </ul>
       <ul>
@@ -22,11 +22,11 @@ function FooterNav() {
         </li>
 
         <li>
-          <a>Purchase terms</a>{' '}
+          <a href="/purchaseTerms">Purchase terms</a>{' '}
         </li>
-        <li>
-          <a>Privacy policy</a>{' '}
-        </li>
+        {/*  <li>
+          <a href="/purchaseTerms">Privacy policy</a>{' '}
+        </li> */}
       </ul>
       <ul>
         <h1>Social media</h1>

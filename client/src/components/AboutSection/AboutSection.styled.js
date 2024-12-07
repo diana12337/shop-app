@@ -3,11 +3,10 @@ import styled from 'styled-components';
 const StyledAboutSection = styled.section`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  background: #f8f8f8;
+  align-items: center;
   gap: 1rem;
-  margin-inline: auto;
 
-  margin-top: 3rem;
   h1,
   h2,
   h3 {
@@ -42,6 +41,12 @@ const StyledAboutSection = styled.section`
   div,
   p {
     flex: 1;
+  }
+
+  article {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 60%;
   }
 `;
 

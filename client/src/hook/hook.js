@@ -11,25 +11,31 @@ import { onAuthStateChanged } from 'firebase/auth';
 export default function useShoppingCart(initialData = []) {
   const [cart, setCart] = useState(initialData);
   const [user, setUser] = useState(null);
-
-  useEffect(() => {
+  console.log('yes iam ');
+  /*  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // User is logged in, fetch cart data from Firestore
         const cartDoc = doc(db, 'carts', currentUser.uid);
         setUser(currentUser);
-        const cartSnapshot = await getDoc(cartDoc);
 
-        if (cartSnapshot.data().items) {
-          setCart(cartSnapshot.data().items);
-        } else {
-          // If no cart exists in Firestore, initialize with initial data
-          await setDoc(cartDoc, { items: initialData });
-          setCart(initialData);
+        try {
+          const cartSnapshot = await getDoc(cartDoc);
+          const cartData = cartSnapshot.data();
+          console.log(cartData, 'jereee');
+          if (cartData && cartData.items) {
+            console.log('Cart data fetched from Firestore:', cartData.items);
+            setCart(cartData.items);
+          } else {
+            console.log(
+              'No cart data found in Firestore. Initializing with initial data.'
+            );
+            await setDoc(cartDoc, { items: initialData });
+            setCart(initialData);
+          }
+        } catch (error) {
+          console.error('Error fetching or setting cart data:', error);
         }
-        setUser(currentUser);
       } else {
-        // User is not logged in, use local storage
         const localCart =
           JSON.parse(window.localStorage.getItem('shoppingCart')) ||
           initialData;
@@ -40,6 +46,58 @@ export default function useShoppingCart(initialData = []) {
 
     return () => unsubscribe();
   }, []);
+ */
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        // Fetch local storage data
+        const localCart =
+          JSON.parse(window.localStorage.getItem('shoppingCart')) || [];
+
+        // User is logged in, fetch cart data from Firestore
+        const cartDoc = doc(db, 'carts', currentUser.uid);
+        setUser(currentUser);
+
+        try {
+          const cartSnapshot = await getDoc(cartDoc);
+          const cartData = cartSnapshot.data();
+
+          /*   if (cartData && cartData.items[0]) { */
+          console.log('Cart data fetched from Firestore:', cartData.items);
+
+          const mergedCart = [...localCart, ...cartData.items];
+          console.log('Merged cart data:', mergedCart);
+
+          await setDoc(cartDoc, { items: mergedCart }, { merge: true });
+          setCart(mergedCart);
+          /* } else {
+            console.log(
+              'No cart data found in Firestore. Initializing with initial data.'
+            );
+            await setDoc(cartDoc, { items: initialData }, { merge: true });
+            setCart(initialData);
+          } */
+        } catch (error) {
+          console.error('Error fetching or setting cart data:', error);
+        }
+      } else {
+        // User is not logged in, use local storage
+        const localCart =
+          JSON.parse(window.localStorage.getItem('shoppingCart')) || [];
+        console.log('Cart data fetched from local storage:', localCart);
+        setCart(localCart);
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  /*   useEffect(() => {
+    if (!user) {
+      window.localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    }
+  }, [cart, user]); */
 
   const setCartItems = async (newData) => {
     setCart(newData);

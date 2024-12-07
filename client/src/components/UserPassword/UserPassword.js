@@ -5,6 +5,7 @@ import Input from '../Input/Input.js';
 import Button from '../Button/Button.js';
 import { validateForm } from '../../helpers/validateForm.js';
 import { updatePassword } from '../../modules/database/database.actions.js';
+import StyledUserPassword from './UserPassword.styled.js';
 const UserPassword = () => {
   const [userPassword, setUserPassword] = useState({
     newPassword: '',
@@ -53,8 +54,8 @@ const UserPassword = () => {
     }
   };
   return (
-    <div>
-      <h3>Update User Data</h3>
+    <StyledUserPassword>
+      <h3>Update Password</h3>
       <form action="" onSubmit={handleSubmit}>
         {allFields}
         <Button
@@ -63,7 +64,7 @@ const UserPassword = () => {
           type="submit"
         />
       </form>
-    </div>
+    </StyledUserPassword>
   );
 };
 

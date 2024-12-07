@@ -5,10 +5,14 @@ const StyledCheckout = styled.div`
   padding-bottom: 3rem;
   text-align: center;
   font-weight: 200;
+  flex-basis: 100%;
 
+  div {
+    flex: 1;
+  }
   section {
     display: flex;
-    width: 70%;
+
     margin-inline: auto;
     justify-content: space-between;
   }

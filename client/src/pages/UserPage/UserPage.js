@@ -5,6 +5,7 @@ import { auth } from '../../firebase.js';
 import StyledUserPage from './UserPage.styled.js';
 import Layout from '../../components/Layout/Layout.js';
 import UserDataForm from '../../components/UserDataForm/UseDataForm.js';
+import UserPurchase from '../../components/UserPurchase/UserPurchase.js';
 import UserPassword from '../../components/UserPassword/UserPassword.js';
 function UserPage() {
   const [activeSection, setActiveSection] = useState('data');
@@ -14,6 +15,8 @@ function UserPage() {
     switch (activeSection) {
       case 'data':
         return <UserDataForm />;
+      case 'purchase':
+        return <UserPurchase />;
       case 'password':
         return <UserPassword />;
       default:

@@ -23,9 +23,10 @@ const StyledHeader = styled.header`
   }
   span {
     position: absolute;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    padding: 5px;
-    width: 10px;
+    padding: 6px 3px 0 4px;
     font-size: 12px;
     background: black;
     text-align: center;

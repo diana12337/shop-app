@@ -4,7 +4,7 @@ import { useSelector /* , useDispatch */ } from 'react-redux';
 import Layout from '../../components/Layout/Layout.js';
 import Article from '../../components/Article/Article.js';
 import StyledCategoryPage from './CategoryPage.styled.js';
-
+import CartQuickView from '../../components/CartQuickView/CartQuickView.js';
 import ProductQuickView from '../../components/ProductQuickView/ProductQuickView.js';
 /* import Pagination from '../../components/Pagination/Pagination.js'; */
 
@@ -51,6 +51,7 @@ function CategoryPage() {
             ))}
           </section>
         </StyledCategoryPage>
+        <CartQuickView images={images} />
         <ProductQuickView
           product={quickviewProduct}
           message="Are you sure you want to remove this item?"

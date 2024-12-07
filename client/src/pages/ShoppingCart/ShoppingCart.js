@@ -7,12 +7,19 @@ import DeliveryOptions from '../../components/DeliveryOptions/DeliveryOptions.js
 import Button from '../../components/Button/Button.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 import ProductList from '../../components/ProductList/ProductList.js';
+
 function ShoppingCart() {
   const { shipping } = useCart();
 
-  const { cart } = useContext(LocalStorageContext);
+  const { cart, user } = useContext(LocalStorageContext);
   const navigate = useNavigate();
-
+  const handleClick = () => {
+    if (user) {
+      navigate('/cart/checkout/address');
+    } else {
+      navigate('/cart/checkout/');
+    }
+  };
   return (
     <Layout>
       {cart.length > 0 ? (
@@ -49,9 +56,7 @@ function ShoppingCart() {
                 <Button
                   text="GO TO CHECKOUT"
                   buttonStyle="buttonAddProduct"
-                  onClick={() => {
-                    navigate('/cart/checkout');
-                  }}
+                  onClick={() => handleClick()}
                 />
               </article>
             </div>

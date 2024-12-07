@@ -11,7 +11,8 @@ export const CartProvider = ({ children }) => {
   const [address, setAddress] = useState({
     firstName: '',
     lastName: '',
-    address: '',
+    street: '',
+    streetNumber: '',
     zipCode: '',
     city: '',
     errors: {},
