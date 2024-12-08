@@ -2,16 +2,22 @@ import { React, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import StyledProductList from './ProductList.styled.js';
 import Button from '../Button/Button.js';
-import { useSelector } from 'react-redux';
-/* import bin from '../../img/bin.png'; */
+
 import LocalStorageContext from '../../context/LocalStorageContext.js';
+import ProductCounter from '../ProductCounter/ProductCounter.js';
 function ProductList() {
-  const { cart, removeCartItem } = useContext(LocalStorageContext);
-  const images = useSelector((state) => state.images);
+  const { userData, removeCartItem } = useContext(LocalStorageContext);
+  const { addCartItem, subtractCartItem } = useContext(LocalStorageContext);
   const handleRemoveItem = (id) => {
     removeCartItem(id);
   };
-  console.log(images, cart);
+  const handleAsc = (product) => {
+    addCartItem(product);
+  };
+
+  const handleDesc = (product) => {
+    subtractCartItem(product);
+  };
   return (
     <StyledProductList>
       <table>
@@ -22,33 +28,36 @@ function ProductList() {
           <th>Total</th>
           <th>Actions</th>
         </tr>
-        {cart.map((product, index) => (
+        {userData.map((product, index) => (
           <tr key={index}>
             {' '}
             <td>
               <Link to={`/product/${product.id}`}>
                 <div>
-                  {images.map(
-                    (image) =>
-                      image.name === product.image && (
-                        <img
-                          key={image.id}
-                          src={image.url}
-                          alt={product.product_name}
-                        />
-                      )
-                  )}
+                  <img
+                    /*     key={image.id} */
+                    src={product.image}
+                    alt={product.product_name}
+                  />
                   <p> {product.name}</p>{' '}
                 </div>
               </Link>
             </td>
             <td>{product.price}$</td>
-            <td>{product.amount}</td>
+            <td>
+              <div>
+                <ProductCounter
+                  state={product.amount}
+                  handleAsc={() => handleAsc(product)}
+                  handleDesc={() => handleDesc(product)}
+                />
+              </div>
+            </td>
             <td>{product.amount * product.price} $</td>
             <td>
               <Button
-                /*  background={bin} */
                 text="REMOVE"
+                buttonStyle="buttonRemove"
                 onClick={() => handleRemoveItem(product.id)}
               />
             </td>

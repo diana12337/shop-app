@@ -32,7 +32,10 @@ const StyledHeader = styled.header`
     text-align: center;
     color: white;
     left: 15px;
-    bottom: 20px;
+    bottom: 15px;
+  }
+  p {
+    cursor: pointer;
   }
 `;
 

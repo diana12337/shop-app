@@ -11,7 +11,7 @@ import ProductList from '../../components/ProductList/ProductList.js';
 function ShoppingCart() {
   const { shipping } = useCart();
 
-  const { cart, user } = useContext(LocalStorageContext);
+  const { userData, user } = useContext(LocalStorageContext);
   const navigate = useNavigate();
   const handleClick = () => {
     if (user) {
@@ -22,19 +22,19 @@ function ShoppingCart() {
   };
   return (
     <Layout>
-      {cart.length > 0 ? (
+      {userData.length > 0 ? (
         <StyledShoppingCart>
           <h1>MY BAG</h1>
           <section>
             <ProductList />
             <div>
-              <DeliveryOptions /* handleChange={handleChange} */ />
+              <DeliveryOptions />
               <article>
                 {' '}
                 <h2>Order summary</h2>
                 <p>
                   Subtotal: $
-                  {cart
+                  {userData
                     .reduce(
                       (accumulator, product) =>
                         accumulator + product.price * product.amount,
@@ -46,7 +46,7 @@ function ShoppingCart() {
                 <span>
                   TOTAL: $
                   {(
-                    cart.reduce(
+                    userData.reduce(
                       (accumulator, product) =>
                         accumulator + product.price * product.amount,
                       0
@@ -63,14 +63,19 @@ function ShoppingCart() {
           </section>
         </StyledShoppingCart>
       ) : (
-        <div>no items in shopping cart</div>
+        <StyledShoppingCart>
+          <main>
+            <h3>NO ITEMS IN SHOPPING CART</h3>
+            <Button
+              text="RETURN TO SHOP"
+              buttonStyle="buttonAddProduct"
+              onClick={() => navigate('/')}
+            />
+          </main>
+        </StyledShoppingCart>
       )}
     </Layout>
   );
 }
-/*   if (notFound) {
-    return <NotFound />;
-  }
- */
 
 export default ShoppingCart;

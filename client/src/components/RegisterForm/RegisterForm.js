@@ -19,6 +19,7 @@ function RegisterForm({ path }) {
     email: '',
     password: '',
     errors: {},
+    registerFailed: '',
   });
 
   const createAccount = async () => {
@@ -36,7 +37,7 @@ function RegisterForm({ path }) {
       await updateProfile(user, {
         displayName: `${firstName} ${lastName}`,
       });
-      const userDoc = doc(db, 'carts', user.uid);
+      const userDoc = doc(db, 'users', user.uid);
       await setDoc(
         userDoc,
         {
@@ -54,6 +55,10 @@ function RegisterForm({ path }) {
       navigate(path);
     } catch (error) {
       console.log(error.message);
+      setRegisterState((prevState) => ({
+        ...prevState,
+        registerFailed: 'Email already in use',
+      }));
     }
   };
   const handleSubmit = (e) => {
@@ -109,10 +114,17 @@ function RegisterForm({ path }) {
 
   return (
     <RegisterFormStyled>
-      <h1>Create an account</h1>
+      <h1>CREATE AN ACCOUNT</h1>
+      {registerState.registerFailed && (
+        <span>{registerState.registerFailed}</span>
+      )}
       <form action="" onSubmit={handleSubmit}>
         {allRegisterFields}
-        <Button buttonStyle="buttonAddProduct" text="dodaj" type="submit" />
+        <Button
+          buttonStyle="buttonAddProduct"
+          text="CREATE ACCOUNT"
+          type="submit"
+        />
       </form>
     </RegisterFormStyled>
   );

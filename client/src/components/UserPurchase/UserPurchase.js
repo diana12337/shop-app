@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase.js';
-import { useSelector } from 'react-redux';
+/* import { useSelector } from 'react-redux'; */
 import StyledUserPurchase from './UserPurchase.styled.js';
 import {
   getFirestore,
@@ -14,7 +14,7 @@ const UserPurchase = () => {
   const [user, setUser] = useState(null);
   const [purchases, setPurchases] = useState([]);
   const db = getFirestore(); // Initialize Firestore instance
-  const images = useSelector((state) => state.images);
+  /*   const images = useSelector((state) => state.images); */
   console.log(user);
   useEffect(() => {
     const fetchUserPurchases = async (userId) => {
@@ -54,28 +54,28 @@ const UserPurchase = () => {
   return (
     <StyledUserPurchase>
       <h3>Purchase History</h3>
-      {purchases.map((purchase) => (
-        <div key={purchase.id}>
-          <h4>Date: {formatDate(purchase.createdAt)}</h4>
-          <p>Total price: ${(purchase.amount / 100).toFixed(2)}</p>
+      {purchases && purchases.length > 0
+        ? purchases.map((purchase) => (
+            <div key={purchase.id}>
+              <h4>Date: {formatDate(purchase.createdAt)}</h4>
+              <p>Total price: ${(purchase.amount / 100).toFixed(2)}</p>
 
-          <ul>
-            {purchase.cart.map((product) => (
-              <li key={product.id}>
-                {/*  <Link to={`/product/${product.id}`}> */}
-                {images.map((image) =>
-                  image.name === product.image ? (
-                    <img key={image.id} src={image.url} alt={product.name} />
-                  ) : null
-                )}
-                <p>{product.name}</p>
-                <p> ${product.price}</p>
-                {/*      </Link> */}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+              <ul>
+                {purchase.cart.map((product) => (
+                  <li key={product.id}>
+                    <img
+                      /* key={image.id} */ src={product.image}
+                      alt={product.name}
+                    />
+
+                    <p>{product.name}</p>
+                    <p> ${product.price}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        : 'no purchase history'}
     </StyledUserPurchase>
   );
 };

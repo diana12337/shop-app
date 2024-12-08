@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 /* import { useNavigate } from 'react-router-dom'; */
 import StyledQuickView from './ProductQuickView.styled.js';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch /*  useSelector */ } from 'react-redux';
 import Button from '../Button/Button.js';
 import cross from '../../img/cross.png';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
@@ -12,7 +12,7 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
   /*   const navigate = useNavigate(); */
   const { quickView, showQuickView, showCartQuickView } = quickViewFunction();
   const dispatch = useDispatch();
-  const images = useSelector((state) => state.images);
+  /*   const images = useSelector((state) => state.images); */
   if (!quickView || !product) {
     return null;
   }
@@ -23,7 +23,7 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
       name: product.product_name,
       price: product.price,
       amount: 1,
-      image: product.category.split(' ').join('-').toLowerCase(),
+      image: product.image,
     };
 
     addCartItem(newItem, product);
@@ -38,26 +38,24 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
         <article>
           <div>
             {' '}
-            {images.map(
-              (image) =>
-                image.name === product.image && (
-                  <img
-                    key={image.id}
-                    src={image.url}
-                    alt={product.product_name}
-                  />
-                )
-            )}{' '}
+            <img
+              /*          key={image.id} */
+              src={product.image}
+              alt={product.product_name}
+            />
           </div>
           <div>
             <h1>{product.product_name}</h1>
             <p>{product.description}</p>
-            <p>{Number(product.price).toFixed(2)}$</p>
-
-            {/*    <p>
-              <div>Ingredients</div>
-              {product.ingredients.join(',')}
-            </p> */}
+            <span>
+              {' '}
+              <p>Size:</p>
+              <p>{product.size}</p>
+            </span>
+            <span>
+              <p>Price:</p>
+              <p>${Number(product.price).toFixed(2)}</p>
+            </span>
           </div>
         </article>
         <div>

@@ -35,13 +35,17 @@ function UserPage() {
 
   return (
     <Layout>
-      <StyledUserPage>
+      <StyledUserPage active={activeSection}>
         <nav>
           <h1>My account</h1>
           <ul>
             <li
               onClick={() => {
                 setActiveSection('data');
+              }}
+              style={{
+                borderBottom:
+                  activeSection === 'data' ? '1px solid black' : 'none',
               }}
             >
               My personal data
@@ -50,19 +54,21 @@ function UserPage() {
               onClick={() => {
                 setActiveSection('purchase');
               }}
+              style={{
+                borderBottom:
+                  activeSection === 'purchase' ? '1px solid black' : 'none',
+              }}
             >
               My purchase
             </li>
-            <li
-              onClick={() => {
-                setActiveSection('adress');
-              }}
-            >
-              My adress{' '}
-            </li>
+
             <li
               onClick={() => {
                 setActiveSection('password');
+              }}
+              style={{
+                borderBottom:
+                  activeSection === 'password' ? '1px solid black' : 'none',
               }}
             >
               Change password{' '}

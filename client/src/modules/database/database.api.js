@@ -15,7 +15,7 @@ export default class ExchangeApi {
 
   getData = async (id) => {
     const docRef = doc(db, this.collection, id.toString());
-    console.log(docRef, 'sssssssss');
+
     const docSnap = await getDoc(docRef);
     return docSnap.data();
   };
@@ -57,13 +57,13 @@ export default class ExchangeApi {
     }
   };
 
-  sendVerificationEmail = async (firstName, lastName, newEmail, password) => {
+  updateUserData = async (firstName, lastName, newEmail, password) => {
     const reauthenticated = await this.reauthenticateUser(password);
 
     if (reauthenticated) {
       const user = auth.currentUser;
       if (user) {
-        const userDoc = doc(db, 'carts', user.uid);
+        const userDoc = doc(db, 'users', user.uid);
         try {
           if (newEmail !== user.email) {
             await updateEmail(user, newEmail);
@@ -95,12 +95,7 @@ export default class ExchangeApi {
             });
           }
         } catch (error) {
-          console.error('Error sending verification email:', error);
-          return {
-            success: false,
-            message: 'Error sending verification email',
-            error: error,
-          };
+          console.error('Error updatingdata:', error);
         }
       } else {
         return { success: false, message: 'No user is signed in' };

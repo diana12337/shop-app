@@ -21,11 +21,12 @@ const StyledUserPage = styled.div`
   }
   li {
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    list-style-type: none;
+    width: 60%;
   }
   li:hover {
     cursor: pointer;
-    border-bottom: 1px solid black;
   }
   div {
     flex: 0 0 70%;

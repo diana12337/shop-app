@@ -19,7 +19,7 @@ const UserData = () => {
     email: '',
     password: '',
     errors: {},
-    responseFromApi: '',
+    dataChangeMessage: '',
   });
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const UserData = () => {
       const user = auth.currentUser;
       if (user) {
         const userId = user.uid;
-        const userDoc = doc(db, 'carts', userId);
+        const userDoc = doc(db, 'users', userId);
 
         // Set up real-time listener
         unsubscribe = onSnapshot(
@@ -111,23 +111,28 @@ const UserData = () => {
       /*   updateUserEmail(userDataState.email); */
       updateData(first, last, email, password);
       /* changeDataInFirestore(first, last, email); */
-      /*   setUserDataState((prevState) => ({
+
+      setUserDataState((prevState) => ({
         ...prevState,
-        responseFromApi: resp,
+        dataChangeMessage: 'Your data has been updated successfully ',
       }));
-    } */
     }
   };
   return (
     <StyledUserData>
-      <h3>Update User Data</h3>
+      <h3>Update Personal Data</h3>
+      {userDataState.dataChangeMessage && (
+        <span>{userDataState.dataChangeMessage}</span>
+      )}
       <form action="" onSubmit={handleSubmit}>
         {allFields}
-        <Button
-          buttonStyle="buttonAddProduct"
-          text="SAVE CHANGES"
-          type="submit"
-        />
+        <section>
+          <Button
+            buttonStyle="buttonAddProduct"
+            text="SAVE CHANGES"
+            type="submit"
+          />
+        </section>
       </form>
     </StyledUserData>
   );

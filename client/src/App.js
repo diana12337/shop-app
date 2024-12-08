@@ -4,7 +4,7 @@ import { db } from './firebase.js';
 import { CartProvider } from './context/ShoppingCartContext.js';
 import { useDispatch } from 'react-redux';
 import { collection, getDocs } from 'firebase/firestore';
-import { setImages } from '../src/modules/database/database.actions.js';
+
 import { setProducts } from '../src/modules/database/database.actions.js';
 import Homepage from './pages/Homepage/Homepage.js';
 import Product from './pages/Product/Product.js';
@@ -16,8 +16,7 @@ import Checkout from './pages/Checkout/Checkout.js';
 import { SharedFunctionProvider } from './context/QuickViewContext.js';
 import CategoryPage from './pages/CategoryPage/CategoryPage.js';
 import ShoppingCart from './pages/ShoppingCart/ShoppingCart.js';
-/* import LoginPage from './pages/LoginPage/LoginPage.js'; */
-import { fetchData } from './helpers/imagesProvider.js';
+
 import LocalStorageContext from './context/LocalStorageContext.js';
 import UserPage from './pages/UserPage/UserPage.js';
 import useStorage from './hook/hook.js';
@@ -31,12 +30,13 @@ import About from './pages/About/About.js';
 function App() {
   const dispatch = useDispatch();
   const [
-    cart,
+    userData,
     user,
     setCartItems,
     findCartItemById,
     addCartItem,
     removeCartItem,
+    subtractCartItem,
   ] = useStorage();
 
   useEffect(() => {
@@ -50,26 +50,20 @@ function App() {
 
       dispatch(setProducts(productsList));
     };
-    const fetchImages = async () => {
-      /*  const response = await fetch('http://localhost:3001/images'); */
-      /*  const data = await response.json(); */
-      const images = await fetchData();
-      dispatch(setImages(images));
-    };
 
     fetchProducts();
-    fetchImages();
   }, [dispatch]);
 
   return (
     <LocalStorageContext.Provider
       value={{
-        cart,
+        userData,
         user,
         setCartItems,
         findCartItemById,
         addCartItem,
         removeCartItem,
+        subtractCartItem,
       }}
     >
       <SharedFunctionProvider>

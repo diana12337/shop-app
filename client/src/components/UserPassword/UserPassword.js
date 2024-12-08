@@ -12,6 +12,7 @@ const UserPassword = () => {
     confirmPassword: '',
     currentPassword: '',
     errors: {},
+    passwordChange: '',
   });
   const allFields = fields.passwordForm.map((field) => (
     <Input
@@ -48,21 +49,35 @@ const UserPassword = () => {
       /*   updateUserEmail(userDataState.email); */
       if (userPassword.newPassword === userPassword.confirmPassword) {
         updatePassword(currentPassword, password);
+        setUserPassword((prevState) => ({
+          ...prevState,
+          passwordChange: 'Your password has been updated.',
+        }));
       } else {
         console.log('hasła niezgodne ');
+        setUserPassword((prevState) => ({
+          ...prevState,
+          passwordChange: 'Passwords do not match. Please try again',
+        }));
       }
     }
   };
   return (
     <StyledUserPassword>
       <h3>Update Password</h3>
+      {userPassword.passwordChange && (
+        <span>{userPassword.passwordChange}</span>
+      )}
       <form action="" onSubmit={handleSubmit}>
         {allFields}
-        <Button
-          buttonStyle="buttonAddProduct"
-          text="SAVE CHANGES"
-          type="submit"
-        />
+        <section>
+          {' '}
+          <Button
+            buttonStyle="buttonAddProduct"
+            text="SAVE CHANGES"
+            type="submit"
+          />
+        </section>
       </form>
     </StyledUserPassword>
   );

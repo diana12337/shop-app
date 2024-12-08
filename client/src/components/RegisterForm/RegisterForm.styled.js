@@ -10,7 +10,7 @@ const StyledRegisterForm = styled.div`
     font-size: 20px;
   }
   form {
-    padding-top: 0.5rem;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -25,6 +25,9 @@ const StyledRegisterForm = styled.div`
     font-size: 16px;
 
     background-color: transparent;
+  }
+  span {
+    color: red;
   }
   button {
     width: 70%;

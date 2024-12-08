@@ -8,7 +8,7 @@ import account from '../../img/account.png';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 
 function Header() {
-  const { user, cart } = useContext(LocalStorageContext);
+  const { user, userData } = useContext(LocalStorageContext);
 
   const navigate = useNavigate();
   return (
@@ -52,9 +52,9 @@ function Header() {
             }}
           />
 
-          {cart ? (
+          {userData ? (
             <span>
-              {cart.reduce(
+              {userData.reduce(
                 (accumulator, product) => accumulator + product.amount,
                 0
               )}

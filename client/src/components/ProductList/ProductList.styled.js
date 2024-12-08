@@ -34,6 +34,7 @@ const StyledProductList = styled.article`
     text-align: center;
     vertical-align: middle;
   }
+
   img {
     width: 20%;
     height: 70px;
@@ -50,21 +51,14 @@ const StyledProductList = styled.article`
     align-items: center;
   }
   button {
-    cursor: pointer;
-    border: none;
-    font-size: 12px;
-    border-bottom: 1px solid black;
-    padding: 0;
     margin: 0;
-    background-color: transparent;
-
-    opacity: 0.6;
-    text-align: center;
-    &:hover {
-      opacity: 1;
-      color: red;
-      border-bottom: 1px solid red;
-    }
+    padding: 0;
+  }
+  section {
+    width: 60px;
+    gap: 10px;
+    padding: 5px;
+    font-size: 14px;
   }
 `;
 

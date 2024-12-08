@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledShoppingCart = styled.div`
   background: #f8f8f8;
-
+  min-height: 350px;
   text-align: center;
   font-weight: 200;
   section {
@@ -22,6 +22,10 @@ const StyledShoppingCart = styled.div`
 
     border-bottom: 1px solid black;
   }
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
   article {
     font-size: 14px;
     padding: 3rem;
@@ -39,8 +43,16 @@ const StyledShoppingCart = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    2rem;
   }
+    main{
+    display:flex;
+    margin-inline:auto;
+    flex-direction:column;
+    align-items:center;
+    width: 50%;
+    padding-top: 4rem;
+    }
 `;
 
 export default StyledShoppingCart;

@@ -9,10 +9,10 @@ import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { setQuickViewCart } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 /*
- */ const CartQuickView = ({ images /* cart */ }) => {
+ */ const CartQuickView = (/* { images } */) => {
   const navigate = useNavigate();
   const { cartQuickView, showCartQuickView } = quickViewFunction();
-  const { cart } = useContext(LocalStorageContext);
+  const { userData } = useContext(LocalStorageContext);
   const dispatch = useDispatch();
   /*  const images = useSelector((state) => state.images); */
   if (!cartQuickView) {
@@ -36,26 +36,26 @@ import LocalStorageContext from '../../context/LocalStorageContext.js';
             <h1>MY BAG</h1>
             <h4>
               {' '}
-              {cart.reduce(
+              {userData.reduce(
                 (accumulator, product) => accumulator + product.amount,
                 0
               )}{' '}
               items
             </h4>
             <ul>
-              {cart.length > 0 &&
-                cart.map((product, index) => (
+              {userData.length > 0 &&
+                userData.map((product, index) => (
                   <Link to={`/product/${product.id}`}>
                     <li key={index}>
-                      {images
+                      {/*   {images
                         .filter((image) => image.name === product.image)
-                        .map((image) => (
-                          <img
-                            key={image.id}
-                            src={image.url}
-                            alt={product.name}
-                          />
-                        ))}
+                        .map((image) => ( */}
+                      <img
+                        /*  key={image.id} */
+                        src={product.image}
+                        alt={product.name}
+                      />
+                      {/*         ))} */}
                       <div>
                         <h2>{product.name}</h2>
                         <p>
@@ -70,7 +70,7 @@ import LocalStorageContext from '../../context/LocalStorageContext.js';
         </article>
         <h2>
           TOTAL: $
-          {cart
+          {userData
             .reduce(
               (accumulator, product) =>
                 accumulator + product.price * product.amount,

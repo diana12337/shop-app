@@ -21,7 +21,7 @@ const StyledQuickView = styled.div`
 
   article {
     flex: 1;
-    min-width: 200px;
+    width: 600px;
     display: flex;
     text-align: left;
     gap: 1rem;
@@ -32,14 +32,22 @@ const StyledQuickView = styled.div`
   }
   p {
     font-size: 13px;
+    line-height: 20px;
   }
   div {
     gap: 10px;
     justify-content: center;
     margin: 10px;
+    flex: 1;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
+  }
+  span {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
   }
 `;
 

@@ -27,7 +27,7 @@ export const validateForm = (fields, state) => {
 export const clearFormFields = (state, setState) => {
   /* const { setState } = this.props; */
   const fieldsData = getFieldsData(state);
-
+  console.log(fieldsData, 'dd');
   for (const prop in fieldsData) {
     fieldsData[prop] = '';
   }

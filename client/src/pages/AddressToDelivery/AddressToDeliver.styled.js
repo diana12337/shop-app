@@ -8,13 +8,13 @@ const StyledAddressToDeliver = styled.div`
     text-align: center;
     margin: 0;
     padding: 20px;
+    width: 100%;
   }
 
   section {
     background: white;
     width: 40%;
     margin-inline: auto;
-    text-align: center;
   }
 `;
 

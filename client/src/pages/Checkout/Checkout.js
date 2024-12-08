@@ -18,9 +18,11 @@ function LoginPage() {
           <LoginForm path="/cart/checkout/address" />
           <RegisterForm path="/cart/checkout/address" />
 
-          <div>
-            <h1>Continue as a guest</h1>
-            <p>In order to </p>
+          <article>
+            <h1>CONTINUE AS A GUEST</h1>
+            <p>
+              Proceed without signing in to quickly complete your purchase.{' '}
+            </p>
             <Button
               text="CONTINUE"
               buttonStyle="buttonAddProduct"
@@ -28,7 +30,7 @@ function LoginPage() {
                 navigate('/cart/checkout/address');
               }}
             />
-          </div>
+          </article>
         </section>
       </StyledCheckout>
     </Layout>

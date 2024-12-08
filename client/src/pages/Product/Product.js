@@ -10,6 +10,12 @@ import { getProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
 function ProductDetail() {
+  const [visibleInfo, setVisibleInfo] = useState(null);
+
+  const showInfo = (info) => {
+    setVisibleInfo(visibleInfo === info ? null : info);
+  };
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(1);
@@ -27,16 +33,14 @@ function ProductDetail() {
     }
   };
   const { addCartItem } = useContext(LocalStorageContext);
-
-  const images = useSelector((state) => state.images);
-
+  console.log(currentProduct, 'heer');
   const handleAddingProduct = () => {
     const newItem = {
       id: currentProduct.id,
       name: currentProduct.product_name,
       price: currentProduct.price,
       amount: counter,
-      image: currentProduct.category.split(' ').join('-').toLowerCase(),
+      image: currentProduct.image,
     };
 
     addCartItem(newItem);
@@ -45,42 +49,72 @@ function ProductDetail() {
   return (
     <Layout>
       <StyledProduct>
-        <header>
-          {images.map(
-            (image) =>
-              image.name === currentProduct.image && (
-                <img
-                  key={image.id}
-                  src={image.url}
-                  alt={currentProduct.product_name}
-                />
-              )
-          )}{' '}
-        </header>
-        <article>
-          <h1>{currentProduct.product_name}</h1>
-          <p>{currentProduct.description}</p>
-          <p>
-            <span>Ingredients</span>
-            {currentProduct.ingredients}
-          </p>
+        <main>
+          <header>
+            <img
+              /*     key={image.id} */
+              src={currentProduct.image}
+              alt={currentProduct.product_name}
+            />
+          </header>
+          <article>
+            <h1>{currentProduct.product_name}</h1>
+            <p>{currentProduct.description}</p>
 
-          <p>Price:{currentProduct.price}$</p>
-          <div>
-            <ProductCounter
-              handleDesc={() => handleDesc()}
-              handleAsc={() => setCounter(counter + 1)}
-              state={counter}
-            />
-            <Button
-              text="add to cart"
-              buttonStyle="buttonAddProduct"
-              onClick={() => handleAddingProduct()}
-            />
-          </div>
-        </article>
+            <span>
+              {' '}
+              <p>Price:</p>
+              <p>${currentProduct && currentProduct.price.toFixed(2)}</p>
+            </span>
+            <span>
+              <p>Size:</p>
+              <p>{currentProduct.size}</p>
+            </span>
+
+            <div>
+              <ProductCounter
+                handleDesc={() => handleDesc()}
+                handleAsc={() => setCounter(counter + 1)}
+                state={counter}
+              />
+              <Button
+                text="add to cart"
+                buttonStyle="buttonAddProduct"
+                onClick={() => handleAddingProduct()}
+              />
+            </div>
+
+            <section>
+              <Button
+                onClick={() => showInfo('info1')}
+                buttonStyle="toggleCart"
+                text={
+                  visibleInfo === 'info1'
+                    ? 'Hide Ingedients'
+                    : 'Show Ingredients'
+                }
+              />
+              {visibleInfo === 'info1' && (
+                <div>
+                  <p> {currentProduct.ingredients.join(',')} </p>
+                </div>
+              )}
+              <Button
+                onClick={() => showInfo('info2')}
+                buttonStyle="toggleCart"
+                text={visibleInfo === 'info2' ? 'Hide Details' : 'Show Details'}
+              />
+
+              {visibleInfo === 'info2' && (
+                <div>
+                  <p>{currentProduct.details}</p>
+                </div>
+              )}
+            </section>
+          </article>
+        </main>
       </StyledProduct>
-      <CartQuickView images={images} />
+      <CartQuickView />
     </Layout>
   );
 }

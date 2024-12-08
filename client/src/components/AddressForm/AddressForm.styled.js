@@ -7,6 +7,11 @@ const StyledAddressForm = styled.div`
   }
   h3 {
     font-weight: 400;
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
   }
 `;
 

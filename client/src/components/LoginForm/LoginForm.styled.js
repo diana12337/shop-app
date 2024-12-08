@@ -9,15 +9,26 @@ const StyledLoginForm = styled.div`
   h1 {
     font-size: 20px;
   }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 1px solid black;
+  }
+  article {
+    background: white;
+    margin-top: 2rem;
+    text-align: center;
+    padding: 25px;
+    border: 1px solid black;
+  }
   form {
-    padding-top: 0.5rem;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 60%;
+    width: 40%;
     align-items: center;
-
-    border-radius: 10px;
   }
   input {
     padding-top: 5px;
@@ -29,6 +40,9 @@ const StyledLoginForm = styled.div`
   }
   button {
     width: 70%;
+  }
+  span {
+    color: red;
   }
 `;
 

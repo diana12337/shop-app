@@ -3,8 +3,19 @@ import styled from 'styled-components';
 const StyledUserPassword = styled.div`
   width: 50%;
   background: white;
-  text-align: center;
+
   padding: 10px;
+
+  label {
+    font-size: 12px;
+  }
+  section {
+    text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+  }
 `;
 
 export default StyledUserPassword;

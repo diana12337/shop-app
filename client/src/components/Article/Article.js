@@ -10,7 +10,7 @@ import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { getProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 
-function Article({ images, product }) {
+function Article({ /* images, */ product }) {
   const { showQuickView, showCartQuickView } = quickViewFunction();
   const { addCartItem } = useContext(LocalStorageContext);
 
@@ -25,7 +25,7 @@ function Article({ images, product }) {
       name: product.product_name,
       price: product.price,
       amount: 1,
-      image: product.category.split(' ').join('').toLowerCase(),
+      image: product.image,
     };
 
     addCartItem(newItem, product);
@@ -35,12 +35,15 @@ function Article({ images, product }) {
   return (
     <StyledArticle>
       <Link to={`/product/${product.id}`}>
-        {images.map(
+        {/*    {images.map(
           (image) =>
-            image.name === product.image && (
-              <img key={image.id} src={image.url} alt={product.product_name} />
-            )
-        )}{' '}
+            image.name === product.image && ( */}
+        <img
+          /* key={image.id} */ src={product.image}
+          alt={product.product_name}
+        />
+        {/*       )
+        )}{' '} */}
       </Link>
       <Link to={`/category/${product.category.split(' ').join('-')}/1`}>
         <h3> {product.category}</h3>

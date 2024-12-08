@@ -81,5 +81,36 @@ export const theme = {
         opacity: 1;
       }
     `,
+    toggleCart: css`
+      cursor: pointer;
+
+      padding: 15px;
+      font-weight: 700;
+      background: white;
+      width: 35px;
+      color: black;
+      border: 1px solid black;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    `,
+    buttonRemove: css`
+      cursor: pointer;
+      border: none;
+      font-size: 12px;
+      border-bottom: 1px solid black;
+      padding: 0;
+      margin: 0;
+      background-color: transparent;
+
+      opacity: 0.6;
+      text-align: center;
+      &:hover {
+        opacity: 1;
+        color: red;
+        border-bottom: 1px solid red;
+      }
+    `,
   },
 };

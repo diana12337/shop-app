@@ -19,14 +19,14 @@ const PaymentOptions = () => {
   const elements = useElements();
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Initialize useNavigate
-  const { cart } = useContext(LocalStorageContext);
+  const { userData } = useContext(LocalStorageContext);
   const { shipping } = useCart();
   const userId = auth.currentUser ? auth.currentUser.uid : 'unknown';
 
   const savePurchaseData = useCallback(async (paymentIntent) => {
     const purchaseData = {
       userId: userId,
-      cart: cart,
+      cart: userData,
       shipping: shipping,
       amount: paymentIntent.amount,
     };

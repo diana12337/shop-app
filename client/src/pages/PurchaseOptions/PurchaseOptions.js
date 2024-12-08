@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 );
 function PurchaseOptions() {
   const [clientSecret, setClientSecret] = useState('');
-  const { cart } = useContext(LocalStorageContext);
+  const { userData } = useContext(LocalStorageContext);
   const { shipping } = useCart();
 
   const userId = auth.currentUser ? auth.currentUser.uid : 'unknown';
@@ -35,7 +35,7 @@ function PurchaseOptions() {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        if (!cart || !Array.isArray(cart) || cart.length === 0) {
+        if (!userData || !Array.isArray(userData) || userData.length === 0) {
           console.log('Cart is empty or not defined yet');
           return;
         }
@@ -47,7 +47,7 @@ function PurchaseOptions() {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              cart,
+              userData,
               shipping,
               userId: userId,
             }),
@@ -77,7 +77,7 @@ function PurchaseOptions() {
             <h2>Order summary</h2>
             <p>
               Subtotal: $
-              {cart
+              {userData
                 .reduce(
                   (accumulator, product) =>
                     accumulator + product.price * product.amount,
@@ -89,7 +89,7 @@ function PurchaseOptions() {
             <span>
               TOTAL: $
               {(
-                cart.reduce(
+                userData.reduce(
                   (accumulator, product) =>
                     accumulator + product.price * product.amount,
                   0

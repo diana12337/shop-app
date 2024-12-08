@@ -10,7 +10,6 @@ const stripe = new Stripe(
 const app = express();
 app.use(express.json());
 
-// Enable CORS for all routes
 app.use(cors({ origin: 'http://localhost:3000' }));
 
 const savePurchaseData = async (purchaseData) => {
@@ -23,13 +22,13 @@ const savePurchaseData = async (purchaseData) => {
 
   await docRef.set(purchaseDocument);
 };
-const calculateOrderAmount = (cart, shipping) => {
-  if (!cart || !Array.isArray(cart)) {
+const calculateOrderAmount = (userData, shipping) => {
+  if (!userData || !Array.isArray(userData)) {
     throw new Error('Cart is not defined or is not an array');
   }
 
   const totalAmount =
-    cart.reduce(
+    userData.reduce(
       (accumulator, product) => accumulator + product.price * product.amount,
       0
     ) + Number(shipping);
@@ -42,19 +41,19 @@ const calculateOrderAmount = (cart, shipping) => {
 };
 
 app.post('/api/create-payment-intent', async (req, res) => {
-  const { cart, shipping, userId } = req.body;
+  const { userData, shipping, userId } = req.body;
 
   try {
     console.log(
       'Received data:',
-      JSON.stringify({ cart, shipping, userId }, null, 2)
+      JSON.stringify({ userData, shipping, userId }, null, 2)
     );
 
-    if (!cart || !Array.isArray(cart)) {
+    if (!userData || !Array.isArray(userData)) {
       throw new Error('Cart is not defined or is not an array');
     }
 
-    const amount = calculateOrderAmount(cart, shipping);
+    const amount = calculateOrderAmount(userData, shipping);
     console.log('Calculated amount:', amount);
 
     const paymentIntent = await stripe.paymentIntents.create({

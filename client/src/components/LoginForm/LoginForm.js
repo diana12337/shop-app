@@ -6,7 +6,9 @@ import Button from '../../components/Button/Button.js';
 import StyledLoginForm from './LoginForm.styled.js';
 
 import Input from '../../components/Input/Input.js';
-import { validateForm } from '../../helpers/validateForm.js';
+import {
+  validateForm /* clearFormFields */,
+} from '../../helpers/validateForm.js';
 
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { fields } from '../../data/fields.js';
@@ -17,6 +19,7 @@ function LoginForm({ path }) {
     loginEmail: '',
     loginPassword: '',
     errors: {},
+    loginFailed: '',
   });
 
   const handleFieldChange = (e) => {
@@ -31,7 +34,10 @@ function LoginForm({ path }) {
       const errorsData = validateForm(fields.loginForm, newState);
       return {
         ...newState,
-        errors: errorsData,
+        errors: {
+          ...newState.errors,
+          [name]: errorsData[name],
+        },
       };
     });
   };
@@ -39,14 +45,45 @@ function LoginForm({ path }) {
   const handleLogging = async (e) => {
     const { loginEmail, loginPassword } = loginState;
     e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      navigate(path);
 
-      console.log('User signed in successfully');
-    } catch (error) {
-      console.log(error.message);
+    const errors = validateForm(fields.loginForm, loginState);
+
+    setLoginState((prevState) => ({
+      ...prevState,
+      errors: errors,
+    }));
+    const values = Object.values(errors);
+
+    if (values.every((val) => val === 'Field valid')) {
+      try {
+        await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+        navigate(path);
+
+        console.log('User signed in successfully');
+        setLoginState((prevState) => ({
+          ...prevState,
+          loginFailed: '',
+        }));
+      } catch (error) {
+        console.log(error.message);
+
+        /*   clearFormFields(loginState, setLoginState); */
+
+        setLoginState((prevState) => ({
+          ...prevState,
+          loginFailed: 'Login attempt failed. Please try again',
+        }));
+      }
     }
+  };
+  const handleTestLogin = (e) => {
+    e.preventDefault();
+
+    setLoginState((prevState) => ({
+      ...prevState,
+      loginEmail: 'mail@testowy.te',
+      loginPassword: 'Test@1234',
+    }));
   };
 
   const allLoggingFields = fields.loginForm.map((field) => (
@@ -61,10 +98,20 @@ function LoginForm({ path }) {
   return (
     <StyledLoginForm>
       <h1>SIGN IN</h1>
+      {loginState.loginFailed && <span>{loginState.loginFailed}</span>}
       <form action="" onSubmit={handleLogging}>
         {allLoggingFields}
-        <Button buttonStyle="buttonAddProduct" text="login" type="submit" />
+        <Button buttonStyle="buttonAddProduct" text="LOGIN" type="submit" />
       </form>
+
+      <article>
+        <h2>Use test login data</h2>
+        <Button
+          text="Paste"
+          buttonStyle="buttonAddProduct"
+          onClick={handleTestLogin}
+        />
+      </article>
     </StyledLoginForm>
   );
 }

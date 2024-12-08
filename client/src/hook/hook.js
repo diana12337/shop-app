@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
-import { db, auth } from '../firebase.js'; // Adjust the import path as necessary
-import {
-  /*  collection, getDocs, */ doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-} from 'firebase/firestore';
+import { db, auth } from '../firebase.js';
+import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 
 export default function useShoppingCart(initialData = []) {
-  const [cart, setCart] = useState(initialData);
+  const [userData, setUserData] = useState(initialData);
   const [user, setUser] = useState(null);
   console.log('yes iam ');
   /*  useEffect(() => {
@@ -55,21 +50,21 @@ export default function useShoppingCart(initialData = []) {
           JSON.parse(window.localStorage.getItem('shoppingCart')) || [];
 
         // User is logged in, fetch cart data from Firestore
-        const cartDoc = doc(db, 'carts', currentUser.uid);
+        const userDoc = doc(db, 'users', currentUser.uid);
         setUser(currentUser);
 
         try {
-          const cartSnapshot = await getDoc(cartDoc);
-          const cartData = cartSnapshot.data();
+          const cartSnapshot = await getDoc(userDoc);
+          const userElements = cartSnapshot.data();
 
           /*   if (cartData && cartData.items[0]) { */
-          console.log('Cart data fetched from Firestore:', cartData.items);
+          console.log('Cart data fetched from Firestore:', userElements.items);
 
-          const mergedCart = [...localCart, ...cartData.items];
+          const mergedCart = [...localCart, ...userData.items];
           console.log('Merged cart data:', mergedCart);
 
-          await setDoc(cartDoc, { items: mergedCart }, { merge: true });
-          setCart(mergedCart);
+          await setDoc(userDoc, { items: mergedCart }, { merge: true });
+          setUserData(mergedCart);
           /* } else {
             console.log(
               'No cart data found in Firestore. Initializing with initial data.'
@@ -85,7 +80,7 @@ export default function useShoppingCart(initialData = []) {
         const localCart =
           JSON.parse(window.localStorage.getItem('shoppingCart')) || [];
         console.log('Cart data fetched from local storage:', localCart);
-        setCart(localCart);
+        setUserData(localCart);
         setUser(null);
       }
     });
@@ -93,61 +88,63 @@ export default function useShoppingCart(initialData = []) {
     return () => unsubscribe();
   }, []);
 
-  /*   useEffect(() => {
-    if (!user) {
-      window.localStorage.setItem('shoppingCart', JSON.stringify(cart));
-    }
-  }, [cart, user]); */
-
   const setCartItems = async (newData) => {
-    setCart(newData);
-    console.log(newData, 'newData');
+    setUserData(newData);
+
     if (user) {
-      // Save cart data to Firestore
       try {
-        const cartDoc = doc(db, 'carts', user.uid);
-        await updateDoc(cartDoc, {
-          items: newData, // Update with new data
+        const userDoc = doc(db, 'users', user.uid);
+        await updateDoc(userDoc, {
+          items: newData,
         });
         console.log('Cart updated successfully');
       } catch (error) {
         console.error('Error updating cart:', error);
       }
     } else {
-      // Save cart data to local storage
       window.localStorage.setItem('shoppingCart', JSON.stringify(newData));
     }
   };
 
   const removeCartItem = (id) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
+    const updatedCart = userData.filter((item) => item.id !== id);
     setCartItems(updatedCart);
   };
 
-  const findCartItemById = (id) => cart.find((item) => item.id === id);
+  const findCartItemById = (id) => userData.find((item) => item.id === id);
 
   const addCartItem = (newItem) => {
-    const existingCartItemIndex = cart.findIndex(
+    const existingCartItemIndex = userData.findIndex(
       (item) => item.id === newItem.id
     );
     console.log(existingCartItemIndex, 'cartindex');
     if (existingCartItemIndex >= 0) {
-      const updatedCart = cart.map((item) =>
+      const updatedCart = userData.map((item) =>
         item.id === newItem.id ? { ...item, amount: item.amount + 1 } : item
       );
       setCartItems(updatedCart);
     } else {
-      const updatedCart = [...cart, newItem];
+      const updatedCart = [...userData, newItem];
       setCartItems(updatedCart);
     }
   };
 
+  const subtractCartItem = (currentItem) => {
+    const updatedCart = userData.map((item) =>
+      item.id === currentItem.id
+        ? { ...item, amount: item.amount > 1 ? item.amount - 1 : item.amount }
+        : item
+    );
+    setCartItems(updatedCart);
+  };
+
   return [
-    cart,
+    userData,
     user,
     setCartItems,
     findCartItemById,
     addCartItem,
     removeCartItem,
+    subtractCartItem,
   ];
 }

@@ -38,7 +38,7 @@ export const updatePassword = async (currentPassword, newPassword) => {
 export const updateData = async (first, last, email, currentPassword) => {
   const api = new ExchangeApi();
 
-  await api.sendVerificationEmail(first, last, email, currentPassword);
+  await api.updateUserData(first, last, email, currentPassword);
 };
 
 /* export const changeDataInFirestore = async (firstName, lastName, newEmail) => {
