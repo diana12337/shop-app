@@ -40,10 +40,3 @@ export const updateData = async (first, last, email, currentPassword) => {
 
   await api.updateUserData(first, last, email, currentPassword);
 };
-
-/* export const changeDataInFirestore = async (firstName, lastName, newEmail) => {
-  const api = new ExchangeApi();
-
-  await api.listenForEmailVerification(firstName, lastName, newEmail);
-};
- */

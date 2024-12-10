@@ -53,7 +53,11 @@ function Header() {
           />
 
           {userData ? (
-            <span>
+            <span
+              onClick={() => {
+                navigate('/cart');
+              }}
+            >
               {userData.reduce(
                 (accumulator, product) => accumulator + product.amount,
                 0

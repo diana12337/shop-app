@@ -49,6 +49,19 @@ const StyledQuickView = styled.div`
 
     gap: 20px;
   }
+  @media (max-width: 700px) {
+    article {
+      width: 350px;
+      gap: 5px;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 400px) {
+    article {
+      width: 100%;
+    }
+  }
 `;
 
 export default StyledQuickView;

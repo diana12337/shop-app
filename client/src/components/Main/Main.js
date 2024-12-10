@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import StyledMain from './Main.styled.js';
 import ProductQuickView from '../ProductQuickView/ProductQuickView.js';
 import Article from '../Article/Article.js';

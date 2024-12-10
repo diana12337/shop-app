@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Notification from '../Notification/Notification.js';
+import Button from '../Button/Button.js';
 const CopyButton = ({ text, number }) => {
   const [showNotification, setShowNotification] = useState(false);
 
@@ -9,7 +10,7 @@ const CopyButton = ({ text, number }) => {
       .writeText(number)
       .then(() => {
         setShowNotification(true);
-        setTimeout(() => setShowNotification(false), 2000); // Hide after 2 seconds
+        setTimeout(() => setShowNotification(false), 2000);
       })
       .catch((err) => {
         console.error('Failed to copy: ', err);
@@ -18,7 +19,11 @@ const CopyButton = ({ text, number }) => {
 
   return (
     <div>
-      <button onClick={copyToClipboard}>COPY{/*  for {text} */}</button>
+      <Button
+        onClick={copyToClipboard}
+        buttonStyle="defaultButton"
+        text="copy"
+      />
       {showNotification && (
         <Notification message={`Number for ${text} copied to clipboard!`} />
       )}

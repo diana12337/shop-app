@@ -45,8 +45,6 @@ const UserPassword = () => {
       const password = userPassword.newPassword;
       const currentPassword = userPassword.currentPassword;
 
-      /*       const email = userDataState.email; */
-      /*   updateUserEmail(userDataState.email); */
       if (userPassword.newPassword === userPassword.confirmPassword) {
         updatePassword(currentPassword, password);
         setUserPassword((prevState) => ({
@@ -54,7 +52,6 @@ const UserPassword = () => {
           passwordChange: 'Your password has been updated.',
         }));
       } else {
-        console.log('hasła niezgodne ');
         setUserPassword((prevState) => ({
           ...prevState,
           passwordChange: 'Passwords do not match. Please try again',
@@ -73,7 +70,7 @@ const UserPassword = () => {
         <section>
           {' '}
           <Button
-            buttonStyle="buttonAddProduct"
+            buttonStyle="defaultButton"
             text="SAVE CHANGES"
             type="submit"
           />

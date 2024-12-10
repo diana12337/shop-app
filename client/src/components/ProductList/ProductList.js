@@ -34,16 +34,12 @@ function ProductList() {
             <td>
               <Link to={`/product/${product.id}`}>
                 <div>
-                  <img
-                    /*     key={image.id} */
-                    src={product.image}
-                    alt={product.product_name}
-                  />
+                  <img src={product.image} alt={product.product_name} />
                   <p> {product.name}</p>{' '}
                 </div>
               </Link>
             </td>
-            <td>{product.price}$</td>
+            <td>${product.price}</td>
             <td>
               <div>
                 <ProductCounter
@@ -53,7 +49,7 @@ function ProductList() {
                 />
               </div>
             </td>
-            <td>{product.amount * product.price} $</td>
+            <td>${(product.amount * product.price).toFixed(2)} </td>
             <td>
               <Button
                 text="REMOVE"

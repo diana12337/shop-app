@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const StyledPaymentOptions = styled.div`
+const StyledPaymentOptions = styled.section`
   display: flex;
-  flex-direction: column;
+  gap: 20px;
   justify-content: space-between;
-
+  flex-wrap: wrap;
   form {
     background: white;
     padding: 20px;
@@ -16,13 +16,11 @@ const StyledPaymentOptions = styled.div`
   }
   section {
     display: flex;
-
-    gap: 20px;
-    margin-top: 20px;
+    max-width: 300px;
   }
   div {
     background: white;
-    padding: 10px;
+
     display: flex;
     text-align: center;
     flex-direction: column;
@@ -30,8 +28,9 @@ const StyledPaymentOptions = styled.div`
   }
   h3 {
     font-weight: 500;
+    width: 80%;
+    margin-bottom: 0;
     border-bottom: 1px solid black;
-    padding: 20px;
   }
   p {
     text-align: center;
@@ -41,6 +40,10 @@ const StyledPaymentOptions = styled.div`
     background: black;
     border: none;
     color: white;
+  }
+
+  article {
+    padding: 0;
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledPurchaseOptions = styled.div`
+const StyledPaymentPage = styled.div`
   background: #f8f8f8;
   min-height: 380px;
 
@@ -8,7 +8,9 @@ const StyledPurchaseOptions = styled.div`
   div {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
   article {
     padding: 25px;
@@ -26,4 +28,4 @@ const StyledPurchaseOptions = styled.div`
   }
 `;
 
-export default StyledPurchaseOptions;
+export default StyledPaymentPage;

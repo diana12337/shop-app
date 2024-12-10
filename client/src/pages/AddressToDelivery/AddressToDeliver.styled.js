@@ -12,8 +12,9 @@ const StyledAddressToDeliver = styled.div`
   }
 
   section {
+    padding: 10px;
     background: white;
-    width: 40%;
+    max-width: 380px;
     margin-inline: auto;
   }
 `;

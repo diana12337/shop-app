@@ -1,6 +1,5 @@
 import React from 'react';
-/* import correct from '../../img/correct.png'; */
-/* import error from '../../img/error.png'; */
+
 import InputStyled from './Input.styled.js';
 
 function Input({ field, handleFieldChange, state }) {
@@ -23,23 +22,3 @@ function Input({ field, handleFieldChange, state }) {
 }
 
 export default Input;
-
-{
-  /* <p>
-{' '}
-{state.errors[field.name] === 'Field valid' ? (
-   <img src={correct} alt="correctImg" /> 
-  <p>Field valid</p>
-) : (
-  ''
-)}{' '}
-</p>
-<p>
-{' '}
-{state.errors[field.name] === 'Field invalid' ? (
-  <img src={error} alt="errortImg" />
-) : (
-  ''
-)}{' '}
-</p> */
-}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase.js';
-/* import { useSelector } from 'react-redux'; */
+
 import StyledUserPurchase from './UserPurchase.styled.js';
 import {
   getFirestore,
@@ -11,11 +11,10 @@ import {
 } from 'firebase/firestore';
 
 const UserPurchase = () => {
-  const [user, setUser] = useState(null);
+  /*  const [user, setUser] = useState(null); */
   const [purchases, setPurchases] = useState([]);
-  const db = getFirestore(); // Initialize Firestore instance
-  /*   const images = useSelector((state) => state.images); */
-  console.log(user);
+  const db = getFirestore();
+
   useEffect(() => {
     const fetchUserPurchases = async (userId) => {
       try {
@@ -40,7 +39,7 @@ const UserPurchase = () => {
     const userId = auth.currentUser ? auth.currentUser.uid : 'unknown';
 
     if (userId !== 'unknown') {
-      setUser(auth.currentUser);
+      /*   setUser(auth.currentUser); */
       fetchUserPurchases(userId);
     }
   }, [db]);
@@ -63,10 +62,7 @@ const UserPurchase = () => {
               <ul>
                 {purchase.cart.map((product) => (
                   <li key={product.id}>
-                    <img
-                      /* key={image.id} */ src={product.image}
-                      alt={product.name}
-                    />
+                    <img src={product.image} alt={product.name} />
 
                     <p>{product.name}</p>
                     <p> ${product.price}</p>

@@ -6,13 +6,13 @@ const StyledCheckout = styled.div`
   text-align: left;
   font-weight: 200;
   flex-basis: 100%;
-
+  min-height: 680px;
   div {
     flex: 1;
   }
   section {
     display: flex;
-
+    flex-wrap: wrap;
     margin-inline: auto;
     justify-content: space-between;
   }
@@ -24,10 +24,12 @@ const StyledCheckout = styled.div`
   }
   form {
     padding: 20px;
+    min-width: 280px;
   }
 
   article {
     text-align: center;
+    margin-inline: auto;
   }
   p {
     width: 70%;

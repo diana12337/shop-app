@@ -4,13 +4,12 @@ import StyledArticle from './Article.styled.js';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
-
 import search from '../../img/search.png';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { getProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 
-function Article({ /* images, */ product }) {
+function Article({ product }) {
   const { showQuickView, showCartQuickView } = quickViewFunction();
   const { addCartItem } = useContext(LocalStorageContext);
 
@@ -35,15 +34,7 @@ function Article({ /* images, */ product }) {
   return (
     <StyledArticle>
       <Link to={`/product/${product.id}`}>
-        {/*    {images.map(
-          (image) =>
-            image.name === product.image && ( */}
-        <img
-          /* key={image.id} */ src={product.image}
-          alt={product.product_name}
-        />
-        {/*       )
-        )}{' '} */}
+        <img src={product.image} alt={product.product_name} />
       </Link>
       <Link to={`/category/${product.category.split(' ').join('-')}/1`}>
         <h3> {product.category}</h3>
@@ -54,7 +45,7 @@ function Article({ /* images, */ product }) {
       <div>
         <Button
           text="ADD PRODUCT"
-          buttonStyle="buttonAddProduct"
+          buttonStyle="defaultButton"
           onClick={() => handleCartQuickView()}
         />
         <Button

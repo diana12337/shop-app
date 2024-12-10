@@ -1,12 +1,11 @@
 import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector /* , useDispatch */ } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Layout from '../../components/Layout/Layout.js';
 import Article from '../../components/Article/Article.js';
 import StyledCategoryPage from './CategoryPage.styled.js';
 import CartQuickView from '../../components/CartQuickView/CartQuickView.js';
 import ProductQuickView from '../../components/ProductQuickView/ProductQuickView.js';
-/* import Pagination from '../../components/Pagination/Pagination.js'; */
 
 function CategoryPage() {
   const { slug } = useParams();
@@ -32,7 +31,6 @@ function CategoryPage() {
     };
     return (
       <Layout>
-        {/*    <Pagination path={`/category/${slug}`} limit={2}> */}
         <StyledCategoryPage>
           <div>
             <label htmlFor="sort"></label>
@@ -42,9 +40,8 @@ function CategoryPage() {
               <option value="asc">Price ascending</option>
               <option value="desc">Price descending</option>
             </select>
-
-            <form></form>
           </div>
+          <h1>{slug.replace('-', ' ')}</h1>
           <section>
             {sortedArticles.map((article, index) => (
               <Article key={index} images={images} product={article} />
@@ -52,11 +49,7 @@ function CategoryPage() {
           </section>
         </StyledCategoryPage>
         <CartQuickView images={images} />
-        <ProductQuickView
-          product={quickviewProduct}
-          message="Are you sure you want to remove this item?"
-        />
-        {/*     </Pagination> */}
+        <ProductQuickView product={quickviewProduct} />
       </Layout>
     );
   }

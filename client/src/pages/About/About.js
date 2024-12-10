@@ -9,9 +9,5 @@ function About() {
     </Layout>
   );
 }
-/*   if (notFound) {
-    return <NotFound />;
-  }
- */
 
 export default About;

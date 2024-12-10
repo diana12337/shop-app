@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-/* import { useNavigate } from 'react-router-dom'; */
+
 import StyledQuickView from './ProductQuickView.styled.js';
-import { useDispatch /*  useSelector */ } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
 import cross from '../../img/cross.png';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { setQuickViewProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
-const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
+const ProductQuickView = ({ product }) => {
   const { addCartItem } = useContext(LocalStorageContext);
-  /*   const navigate = useNavigate(); */
+
   const { quickView, showQuickView, showCartQuickView } = quickViewFunction();
   const dispatch = useDispatch();
-  /*   const images = useSelector((state) => state.images); */
+
   if (!quickView || !product) {
     return null;
   }
@@ -38,11 +38,7 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
         <article>
           <div>
             {' '}
-            <img
-              /*          key={image.id} */
-              src={product.image}
-              alt={product.product_name}
-            />
+            <img src={product.image} alt={product.product_name} />
           </div>
           <div>
             <h1>{product.product_name}</h1>
@@ -62,7 +58,7 @@ const ProductQuickView = ({ product /* onConfirm, onCancel */ }) => {
           <Button
             text="ADD PRODUCT"
             onClick={() => handleAddingProduct()}
-            buttonStyle="buttonAddProduct"
+            buttonStyle="defaultButton"
           />
           <Button
             background={cross}

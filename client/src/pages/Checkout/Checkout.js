@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import StyledCheckout from './Checkout.styled.js';
 import Layout from '../../components/Layout/Layout.js';
 import LoginForm from '../../components/LoginForm/LoginForm.js';
-
 import RegisterForm from '../../components/RegisterForm/RegisterForm.js';
 import Button from '../../components/Button/Button.js';
 
@@ -25,7 +24,7 @@ function LoginPage() {
             </p>
             <Button
               text="CONTINUE"
-              buttonStyle="buttonAddProduct"
+              buttonStyle="defaultButton"
               onClick={() => {
                 navigate('/cart/checkout/address');
               }}

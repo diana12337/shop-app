@@ -13,7 +13,7 @@ function HeroSection() {
           <div>
             <Button
               text="LEARN MORE"
-              buttonStyle="buttonAddProduct"
+              buttonStyle="defaultButton"
               onClick={() => {
                 navigate('/about');
               }}

@@ -1,27 +1,24 @@
-/* eslint-disable react/jsx-key */
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import StyledCartView from './CartQuickView.styled.js';
-import { useDispatch /* useSelector */ } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from '../Button/Button.js';
 import cross from '../../img/cross.png';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
 import { setQuickViewCart } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
-/*
- */ const CartQuickView = (/* { images } */) => {
+
+const CartQuickView = () => {
   const navigate = useNavigate();
   const { cartQuickView, showCartQuickView } = quickViewFunction();
   const { userData } = useContext(LocalStorageContext);
   const dispatch = useDispatch();
-  /*  const images = useSelector((state) => state.images); */
+
   if (!cartQuickView) {
     return null;
   }
-  console.log(cartQuickView, 'ss');
-  const handleAddingProduct = (product) => {
-    console.log(product, 'rdi');
 
+  const handleAddingProduct = () => {
     showCartQuickView(false);
     dispatch(setQuickViewCart(''));
 
@@ -45,17 +42,10 @@ import LocalStorageContext from '../../context/LocalStorageContext.js';
             <ul>
               {userData.length > 0 &&
                 userData.map((product, index) => (
-                  <Link to={`/product/${product.id}`}>
-                    <li key={index}>
-                      {/*   {images
-                        .filter((image) => image.name === product.image)
-                        .map((image) => ( */}
-                      <img
-                        /*  key={image.id} */
-                        src={product.image}
-                        alt={product.name}
-                      />
-                      {/*         ))} */}
+                  <Link to={`/product/${product.id}`} key={index}>
+                    <li>
+                      <img src={product.image} alt={product.name} />
+
                       <div>
                         <h2>{product.name}</h2>
                         <p>
@@ -82,7 +72,7 @@ import LocalStorageContext from '../../context/LocalStorageContext.js';
           <Button
             text="GO TO CART"
             onClick={(product) => handleAddingProduct(product)}
-            buttonStyle="buttonAddProduct"
+            buttonStyle="defaultButton"
           />
           <Button
             background={cross}

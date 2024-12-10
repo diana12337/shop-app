@@ -1,16 +1,14 @@
 import { React, useState } from 'react';
 import { db, auth } from '../../firebase.js';
 import { doc, setDoc } from 'firebase/firestore';
-/* import Layout from '../../components/Layout/Layout.js'; */
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button.js';
 import RegisterFormStyled from './RegisterForm.styled.js';
-/* import StyledLoginPage from './LoginPage.styled.js'; */
 import Input from '../Input/Input.js';
-import { validateForm, clearFormFields } from '../../helpers/validateForm.js';
+import { validateForm } from '../../helpers/validateForm.js';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-/* import { signInWithEmailAndPassword } from 'firebase/auth'; */
 import { fields } from '../../data/fields.js';
+
 function RegisterForm({ path }) {
   const navigate = useNavigate();
   const [registerState, setRegisterState] = useState({
@@ -22,6 +20,13 @@ function RegisterForm({ path }) {
     registerFailed: '',
   });
 
+  const [passwordValidation, setPasswordValidation] = useState({
+    length: false,
+    uppercase: false,
+    number: false,
+    specialChar: false,
+  });
+  const [isTypingPassword, setIsTypingPassword] = useState(false);
   const createAccount = async () => {
     const { email, password, firstName, lastName } = registerState;
 
@@ -33,7 +38,6 @@ function RegisterForm({ path }) {
       );
       const user = userCredential.user;
 
-      // Update the user profile with name and surname
       await updateProfile(user, {
         displayName: `${firstName} ${lastName}`,
       });
@@ -51,10 +55,8 @@ function RegisterForm({ path }) {
         },
         { merge: true }
       ),
-        console.log('User created successfully with name and surname', userDoc);
-      navigate(path);
+        navigate(path);
     } catch (error) {
-      console.log(error.message);
       setRegisterState((prevState) => ({
         ...prevState,
         registerFailed: 'Email already in use',
@@ -74,7 +76,7 @@ function RegisterForm({ path }) {
 
     if (values.every((val) => val === 'Field valid')) {
       createAccount();
-      clearFormFields(registerState, setRegisterState);
+
       const errors = {};
       setRegisterState((prevState) => ({
         ...prevState,
@@ -93,6 +95,17 @@ function RegisterForm({ path }) {
       };
 
       const errorsData = validateForm(fields.registerForm, newState);
+
+      if (name === 'password') {
+        setIsTypingPassword(true);
+        setPasswordValidation({
+          length: value.length >= 8,
+          uppercase: /[A-Z]/.test(value),
+          number: /[0-9]/.test(value),
+          specialChar: /[!@#$%^&*]/.test(value),
+        });
+      }
+
       return {
         ...newState,
         errors: {
@@ -121,11 +134,39 @@ function RegisterForm({ path }) {
       <form action="" onSubmit={handleSubmit}>
         {allRegisterFields}
         <Button
-          buttonStyle="buttonAddProduct"
+          buttonStyle="defaultButton"
           text="CREATE ACCOUNT"
           type="submit"
         />
       </form>
+
+      {isTypingPassword ? (
+        <div>
+          <h4>Password must contain:</h4>
+          <ul>
+            <li style={{ color: passwordValidation.length ? 'green' : 'red' }}>
+              At least 8 characters
+            </li>
+            <li
+              style={{ color: passwordValidation.uppercase ? 'green' : 'red' }}
+            >
+              At least one uppercase letter
+            </li>
+            <li style={{ color: passwordValidation.number ? 'green' : 'red' }}>
+              At least one number
+            </li>
+            <li
+              style={{
+                color: passwordValidation.specialChar ? 'green' : 'red',
+              }}
+            >
+              At least one special character (!@#$%^&*)
+            </li>
+          </ul>
+        </div>
+      ) : (
+        ''
+      )}
     </RegisterFormStyled>
   );
 }

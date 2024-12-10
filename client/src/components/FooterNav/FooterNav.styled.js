@@ -8,6 +8,7 @@ const FooterNav = styled.nav`
   align-items: flex-start;
   gap: 5rem;
   justify-content: center;
+  flex-wrap: wrap;
   h1 {
     font-size: 17px;
     font-weight: 700;
@@ -36,6 +37,10 @@ const FooterNav = styled.nav`
   img {
     width: 20px;
     height: 20px;
+  }
+
+  @media (max-width: 650px) {
+    gap: 1rem;
   }
 `;
 

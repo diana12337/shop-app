@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const StyledAddressForm = styled.div`
-  padding: 10px;
   div {
     background: white;
   }
@@ -12,6 +11,9 @@ const StyledAddressForm = styled.div`
 
   button {
     width: 100%;
+  }
+  input::placeholder {
+    color: grey;
   }
 `;
 

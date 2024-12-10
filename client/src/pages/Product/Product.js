@@ -9,6 +9,7 @@ import ProductCounter from '../../components/ProductCounter/ProductCounter.js';
 import { getProduct } from '../../modules/database/database.actions.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 import { quickViewFunction } from '../../context/QuickViewContext.js';
+
 function ProductDetail() {
   const [visibleInfo, setVisibleInfo] = useState(null);
 
@@ -20,6 +21,8 @@ function ProductDetail() {
   const dispatch = useDispatch();
   const [counter, setCounter] = useState(1);
   const { showCartQuickView } = quickViewFunction();
+  const { addCartItem } = useContext(LocalStorageContext);
+
   const currentProduct = useSelector((state) => state.quickViewProduct);
   useEffect(() => {
     dispatch(getProduct('products', id));
@@ -32,8 +35,7 @@ function ProductDetail() {
       setCounter(counter);
     }
   };
-  const { addCartItem } = useContext(LocalStorageContext);
-  console.log(currentProduct, 'heer');
+
   const handleAddingProduct = () => {
     const newItem = {
       id: currentProduct.id,
@@ -51,11 +53,7 @@ function ProductDetail() {
       <StyledProduct>
         <main>
           <header>
-            <img
-              /*     key={image.id} */
-              src={currentProduct.image}
-              alt={currentProduct.product_name}
-            />
+            <img src={currentProduct.image} alt={currentProduct.product_name} />
           </header>
           <article>
             <h1>{currentProduct.product_name}</h1>
@@ -79,33 +77,35 @@ function ProductDetail() {
               />
               <Button
                 text="add to cart"
-                buttonStyle="buttonAddProduct"
+                buttonStyle="defaultButton"
                 onClick={() => handleAddingProduct()}
               />
             </div>
 
             <section>
               <Button
-                onClick={() => showInfo('info1')}
+                onClick={() => showInfo('ingredients')}
                 buttonStyle="toggleCart"
                 text={
-                  visibleInfo === 'info1'
+                  visibleInfo === 'ingredients'
                     ? 'Hide Ingedients'
                     : 'Show Ingredients'
                 }
               />
-              {visibleInfo === 'info1' && (
+              {visibleInfo === 'ingredients' && (
                 <div>
                   <p> {currentProduct.ingredients.join(',')} </p>
                 </div>
               )}
               <Button
-                onClick={() => showInfo('info2')}
+                onClick={() => showInfo('details')}
                 buttonStyle="toggleCart"
-                text={visibleInfo === 'info2' ? 'Hide Details' : 'Show Details'}
+                text={
+                  visibleInfo === 'details' ? 'Hide Details' : 'Show Details'
+                }
               />
 
-              {visibleInfo === 'info2' && (
+              {visibleInfo === 'details' && (
                 <div>
                   <p>{currentProduct.details}</p>
                 </div>

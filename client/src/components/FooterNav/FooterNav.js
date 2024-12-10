@@ -24,9 +24,6 @@ function FooterNav() {
         <li>
           <a href="/purchaseTerms">Purchase terms</a>{' '}
         </li>
-        {/*  <li>
-          <a href="/purchaseTerms">Privacy policy</a>{' '}
-        </li> */}
       </ul>
       <ul>
         <h1>Social media</h1>

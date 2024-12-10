@@ -1,25 +1,23 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useCallback } from 'react';
 import {
   useStripe,
   useElements,
   PaymentElement,
 } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
-/* import { auth } from '../../firebase.js'; */
 import Button from '../Button/Button.js';
-/* import Notification from '../../Notification/Notification.js'; */
 import StyledPaymentOptions from './PaymentOptions.styled.js';
 import { auth } from '../../firebase.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 import { useCart } from '../../context/ShoppingCartContext.js';
 import CopyButton from '../CopyButton/CopyButton.js';
+
 const PaymentOptions = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Initialize useNavigate
-  const { userData } = useContext(LocalStorageContext);
+
+  const navigate = useNavigate();
+  const { userData, setCartItems } = useContext(LocalStorageContext);
   const { shipping } = useCart();
   const userId = auth.currentUser ? auth.currentUser.uid : 'unknown';
 
@@ -32,11 +30,6 @@ const PaymentOptions = () => {
     };
 
     try {
-      console.log(
-        'Sending purchase data:',
-        JSON.stringify(purchaseData, null, 2)
-      );
-
       const response = await fetch('http://localhost:4242/api/save-purchase', {
         method: 'POST',
         headers: {
@@ -48,9 +41,6 @@ const PaymentOptions = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const data = await response.json();
-      console.log('Purchase data saved:', data);
     } catch (error) {
       console.error('Error saving purchase data:', error);
     }
@@ -64,17 +54,17 @@ const PaymentOptions = () => {
         return;
       }
 
-      console.log('Submitting Payment');
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
-        redirect: 'if_required', // Prevent automatic redirection
+        redirect: 'if_required',
       });
 
       if (error) {
-        setError(error.message);
+        console.error('Error saving purchase data:', error);
       } else {
         await savePurchaseData(paymentIntent);
-        navigate('/cart/order-success'); // Manually navigate to the success page
+        setCartItems([]);
+        navigate('/cart/order-success');
       }
     },
     [stripe, elements, savePurchaseData, navigate]
@@ -85,30 +75,19 @@ const PaymentOptions = () => {
       <form onSubmit={handleSubmit}>
         <PaymentElement />
 
-        <Button
-          type="submit"
-          buttonStyle="buttonAddProduct"
-          /* disabled={!stripe} */
-          text="PAY"
-        />
-
-        {/*   {error && <div>{error}</div>} */}
+        <Button type="submit" buttonStyle="defaultButton" text="PAY" />
       </form>
 
       <section>
         <div>
           <h3>Copy card number for testing payment</h3>
-          <div>
+          <article>
             <p>Success payment: 4242 4242 4242 4242</p>
             <CopyButton text="success payment" number="4242 4242 4242 4242" />
             <p>Decline payment: 4000 000 000 000 002</p>
             <CopyButton text="decline payment" number="4000 000 000 000 002" />
-          </div>
+          </article>
         </div>
-        {/*    <div>
-          <p>4000 000 000 000 002</p>
-          <CopyButton text="decline payment" number="4000 000 000 000 002" />
-        </div> */}
       </section>
     </StyledPaymentOptions>
   );

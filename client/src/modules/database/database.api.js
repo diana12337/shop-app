@@ -20,26 +20,23 @@ export default class ExchangeApi {
     return docSnap.data();
   };
 
-  // Function to reauthenticate user
   reauthenticateUser = async (password) => {
     const user = auth.currentUser;
     if (user) {
       try {
         const credential = EmailAuthProvider.credential(user.email, password);
         await reauthenticateWithCredential(user, credential);
-        console.log('User reauthenticated');
+
         return true;
       } catch (error) {
         console.error('Error reauthenticating user:', error);
         return false;
       }
     } else {
-      console.log('No user is signed in');
       return false;
     }
   };
 
-  // Function to update user's password
   updateUserPassword = async (currentPassword, newPassword) => {
     const reauthenticated = await this.reauthenticateUser(currentPassword);
     if (reauthenticated) {
@@ -47,12 +44,9 @@ export default class ExchangeApi {
       if (user) {
         try {
           await updatePassword(user, newPassword);
-          console.log('Password updated successfully');
         } catch (error) {
           console.error('Error updating password:', error);
         }
-      } else {
-        console.log('No user is signed in');
       }
     }
   };
@@ -104,11 +98,4 @@ export default class ExchangeApi {
       return { success: false, message: 'Reauthentication failed' };
     }
   };
-
-  handleErrors(resp) {
-    if (!resp.ok) {
-      throw Error(resp.statusText);
-    }
-    return resp;
-  }
 }

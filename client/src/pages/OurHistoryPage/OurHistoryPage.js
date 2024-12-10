@@ -9,9 +9,5 @@ function OurHistoryPage() {
     </Layout>
   );
 }
-/*   if (notFound) {
-    return <NotFound />;
-  }
- */
 
 export default OurHistoryPage;

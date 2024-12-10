@@ -7,7 +7,7 @@ const StyledShoppingCart = styled.div`
   font-weight: 200;
   section {
     display: flex;
-
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
     gap: 2rem;
@@ -43,16 +43,16 @@ const StyledShoppingCart = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    2rem;
+    gap: 2rem;
   }
-    main{
-    display:flex;
-    margin-inline:auto;
-    flex-direction:column;
-    align-items:center;
+  main {
+    display: flex;
+    margin-inline: auto;
+    flex-direction: column;
+    align-items: center;
     width: 50%;
     padding-top: 4rem;
-    }
+  }
 `;
 
 export default StyledShoppingCart;

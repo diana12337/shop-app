@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledProductList = styled.article`
   display: block;
-
+overflow-x: auto
   width: 60%;
 
   table {
@@ -45,10 +45,11 @@ const StyledProductList = styled.article`
   }
   div {
     display: flex;
-    gap: 20px;
-
-    justify-content: flex-start;
+padding:5px;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
+   gap:9px;
   }
   button {
     margin: 0;
@@ -59,6 +60,9 @@ const StyledProductList = styled.article`
     gap: 10px;
     padding: 5px;
     font-size: 14px;
+  }
+  @media (max-width: 750px) {
+    width: 100%;
   }
 `;
 

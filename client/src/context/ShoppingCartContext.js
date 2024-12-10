@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Create a context for the cart
 const CartContext = createContext();
 
-// Hook to use the CartContext
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {

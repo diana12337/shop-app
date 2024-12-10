@@ -11,15 +11,6 @@ const AddressForm = () => {
   const { address, setAddress } = useCart();
   const navigate = useNavigate();
 
-  const allFields = fields.addressForm.map((field) => (
-    <Input
-      key={field.id}
-      field={field}
-      handleFieldChange={(e) => handleFieldChange(e)}
-      state={address}
-      setState={setAddress}
-    />
-  ));
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = validateForm(fields.addressForm, address);
@@ -51,13 +42,23 @@ const AddressForm = () => {
       };
     });
   };
+
+  const allFields = fields.addressForm.map((field) => (
+    <Input
+      key={field.id}
+      field={field}
+      handleFieldChange={(e) => handleFieldChange(e)}
+      state={address}
+      setState={setAddress}
+    />
+  ));
   return (
     <StyledAddressForm>
       <h3>Shipping details</h3>
       <form action="" onSubmit={handleSubmit}>
         {allFields}
         <Button
-          buttonStyle="buttonAddProduct"
+          buttonStyle="defaultButton"
           text="GO TO PAYMENT"
           type="submit"
         />

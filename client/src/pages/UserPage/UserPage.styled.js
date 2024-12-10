@@ -36,6 +36,20 @@ const StyledUserPage = styled.div`
     font-weight: 300;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    nav,
+    div {
+      width: 100%;
+    }
+  }
 `;
 
 export default StyledUserPage;

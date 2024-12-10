@@ -20,11 +20,16 @@ const StyledMain = styled.main`
   }
   section button {
     padding: 10px;
+    background: white;
+    border: 1px solid black;
+    margin-top: 3rem;
+    cursor: pointer;
+    width: 180px;
+    font-weight: 600;
+  }
+  section button:hover {
     background: black;
     color: white;
-    margin-top: 2rem;
-    cursor: pointer;
-    font-weight: 600;
   }
 `;
 

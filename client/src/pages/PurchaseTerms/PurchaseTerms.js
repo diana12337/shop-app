@@ -9,9 +9,5 @@ function PurchaseTerms() {
     </Layout>
   );
 }
-/*   if (notFound) {
-    return <NotFound />;
-  }
- */
 
 export default PurchaseTerms;

@@ -4,12 +4,16 @@ const StyledCategoryPage = styled.div`
   background: #f8f8f8;
   padding-bottom: 2rem;
   padding-top: 2rem;
-
+  h1 {
+    font-size: 27px;
+    font-weight: 500;
+    margin-left: 3rem;
+  }
   select {
     margin-left: 3rem;
-
+    cursor: pointer;
     background-color: #ffffff;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 4px;
     padding: 10px;
     font-size: 16px;
@@ -21,7 +25,7 @@ const StyledCategoryPage = styled.div`
   }
   select:focus {
     outline: none;
-    border-color: #66afe9;
+    border-color: black;
     box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
   }
   section {

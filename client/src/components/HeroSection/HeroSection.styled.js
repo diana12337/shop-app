@@ -28,6 +28,19 @@ const StyledHeroSection = styled.section`
     text-decoration: none;
     font-size: 1em;
   }
+
+ @media (max-width: 650px) {
+    h1 {
+    font-size: 30px;
+  
+  }
+     p {
+    font-size: 20px;
+    
+  }
+  }
+   
+
 `;
 
 export default StyledHeroSection;

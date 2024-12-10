@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-const StyledProductCounter = styled.section`
+const StyledProductCounter = styled.div`
   border: 1px solid black;
   background: white;
   align-items: center;
   display: flex;
-  width: 80px;
+  width: 60px;
   p {
     margin: 0;
     font-size: 14px;
@@ -14,6 +14,7 @@ const StyledProductCounter = styled.section`
     border: none;
     background: transparent;
     cursor: pointer;
+    padding: 5px;
   }
 `;
 

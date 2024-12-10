@@ -16,7 +16,7 @@ function PurchaseConfirmation() {
             processed.
           </p>
           <Button
-            buttonStyle="buttonAddProduct"
+            buttonStyle="defaultButton"
             text="RETURN TO SHOP"
             onClick={() => {
               navigate('/');

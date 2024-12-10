@@ -53,6 +53,19 @@ const StyledProduct = styled.section`
     margin-inline: auto;
     font-size: 14px;
   }
+
+  @media (max-width: 750px) {
+    padding-bottom: 2rem;
+    main {
+      flex-direction: column;
+    }
+  }
+  @media (max-width: 350px) {
+    padding-bottom: 2rem;
+    main {
+      width: 100%;
+    }
+  }
 `;
 
 export default StyledProduct;

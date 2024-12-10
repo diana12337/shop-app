@@ -23,7 +23,7 @@ export const theme = {
        
     }
 `,
-    buttonAddProduct: css`
+    defaultButton: css`
       cursor: pointer;
       padding: 10px;
       color: whitesmoke;

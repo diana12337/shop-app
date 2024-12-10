@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledCopyButton = styled.button`
   cursor: pointer;
 
-  padding: 7px;
+  padding: 4px;
   font-weight: 700;
 
   border: 1px solid black;

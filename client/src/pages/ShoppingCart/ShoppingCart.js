@@ -55,7 +55,7 @@ function ShoppingCart() {
                 </span>
                 <Button
                   text="GO TO CHECKOUT"
-                  buttonStyle="buttonAddProduct"
+                  buttonStyle="defaultButton"
                   onClick={() => handleClick()}
                 />
               </article>
@@ -68,7 +68,7 @@ function ShoppingCart() {
             <h3>NO ITEMS IN SHOPPING CART</h3>
             <Button
               text="RETURN TO SHOP"
-              buttonStyle="buttonAddProduct"
+              buttonStyle="defaultButton"
               onClick={() => navigate('/')}
             />
           </main>

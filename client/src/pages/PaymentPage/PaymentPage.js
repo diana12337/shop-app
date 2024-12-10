@@ -1,36 +1,22 @@
 import { React, useEffect, useState, useContext } from 'react';
-
-import StyledPurchaseOptions from './PurchaseOptions.styled.js';
+import StyledPaymentPage from './PaymentPage.styled.js';
 import Layout from '../../components/Layout/Layout.js';
 import { useCart } from '../../context/ShoppingCartContext.js';
 import LocalStorageContext from '../../context/LocalStorageContext.js';
 import PaymentOptions from '../../components/PaymentOptions/PaymentOptions.js';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-
 import { auth } from '../../firebase.js';
+
 const stripePromise = loadStripe(
   'pk_test_51QRDLCEE8OTGwyjyBMGR9a3dnDkT4Sm4O08vyKsblzvtTrVP8Vd0dIoY3KbYtZ4adzjzS2azZsxKcBKOyoeTYJIM00hMXzdBq1'
 );
-function PurchaseOptions() {
+function PaymentPage() {
   const [clientSecret, setClientSecret] = useState('');
   const { userData } = useContext(LocalStorageContext);
   const { shipping } = useCart();
 
   const userId = auth.currentUser ? auth.currentUser.uid : 'unknown';
-  console.log(userId, 'ssss');
-  /*   useEffect(() => {
- 
-    fetch('http://localhost:4242/api/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: [{ amount: 1000 }] }), 
-    })
-      .then((response) => response.json())
-      .then((data) => setClientSecret(data.clientSecret))
-      .catch((error) => console.error('Error fetching client secret:', error));
-  }, []);
- */
 
   useEffect(() => {
     const fetchClientSecret = async () => {
@@ -55,7 +41,7 @@ function PurchaseOptions() {
         );
 
         const data = await response.json();
-        console.log(data, 'hereeeeeeeeeeee');
+
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.error('Error fetching client secret:', error);
@@ -70,7 +56,7 @@ function PurchaseOptions() {
   };
   return (
     <Layout>
-      <StyledPurchaseOptions>
+      <StyledPaymentPage>
         <div>
           <article>
             {' '}
@@ -103,11 +89,9 @@ function PurchaseOptions() {
             </Elements>
           )}
         </div>
-      </StyledPurchaseOptions>
+      </StyledPaymentPage>
     </Layout>
   );
 }
 
-export default PurchaseOptions;
-
-/* 'your_public_stripe_key_here' */
+export default PaymentPage;

@@ -29,6 +29,14 @@ const StyledRegisterForm = styled.div`
   span {
     color: red;
   }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    font-size: 14px;
+    list-style-type: none;
+  }
   button {
     width: 70%;
   }

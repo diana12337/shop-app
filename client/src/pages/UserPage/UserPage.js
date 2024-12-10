@@ -27,7 +27,7 @@ function UserPage() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/loginPanel'); // Redirect to login panel after logging out
+      navigate('/loginPanel');
     } catch (error) {
       console.error('Error logging out:', error);
     }

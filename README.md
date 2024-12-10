@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# ShoppApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ShoppApp is an e-commerce platform that provides an effortless shopping experience for users. With a vast selection of products, intuitive navigation, and secure payment processing through Stripe, ShopApp makes online shopping easy and enjoyable.
 
-## Available Scripts
+<p align="center">
+  <img src="./client/src/img/mainScreenshot.png" alt="Screenshot of mainPage width="700px">
+</p>
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+- The project uses node and npm. To run the app on your machine you should install all dependencies.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npm i
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- To run a server follow the steps below:
+  Navigate to the server directory:
 
-### `npm test`
+```bash
+cd server
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Once you're in the server directory, run the command to start your server.
 
-### `npm run build`
+```bash
+node server.js
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After running the command, your server is ready at port http://localhost:4242
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- To create a localhost port you should follow the steps below:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Navigate to the client directory:
 
-### `npm run eject`
+```bash
+cd client
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Once you're in the client directory, run the following command:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ShoppApp is ready at port 3000.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+http://localhost:3000/
+```
 
-## Learn More
+## Managing API keys
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Stripe key
+  The secret Stripe key is used to authenticate server-side requests to Stripe.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Firebase Admin SDK key.json
 
-### Code Splitting
+The key.json file contains credentials for the Firebase Admin SDK, which allows the server to interact with Firebase securely.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Both the secret Stripe key and the key.json file are stored in the root of the server directory.
 
-### Analyzing the Bundle Size
+## Solutions provided in the app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The App enhances the user's experience thanks to the solutions provided in the form.
 
-### Making a Progressive Web App
+- For handling payment transactions Stripe was integrated
+  The server includes an endpoint to create payment intents. This endpoint securely handles the secret Stripe key and creates a payment intent with the specified amount
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<p align="center">
+  <img src="./client/src/img/paymentScreenshot.png" alt="Screenshot of payment" width="400px">
+</p>
 
-### Advanced Configuration
+- User panel enables users to manage their accounts by updating password and personal data and also viewing purchase transactions
+<p align="center">
+  <img src="./client/src/img/userPanelScreenshot.png" alt="Screenshot of puser panel" width="400px">
+</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The app is responsive, ensuring a smooth shopping experience whether you’re on a desktop, tablet, or smartphone.
+Clear, straightforward navigation and layout make it easy for users to find and purchase products.
+Users can quickly view their cart contents without leaving the current page.
 
-### Deployment
+<p align="center">
+  <img src="./client/src/img/quickViewScreenshot.png" alt="Screenshot of quickView" width="300px">
+</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<p align="center">
+  <img src="./client/src/img/productQuickViewScreenshot.png" alt="Screenshot of product quickView" width="300px">
+</p>
 
-### `npm run build` fails to minify
+- ShopApp uses Firebase for various backend services, enhancing the app's functionality and providing a seamless user experience:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Real-Time Database: Firebase Firestore is used to store and sync user data, ensuring real-time updates across the application.
+Authentication: Firebase Authentication manages user sign-ups, logins, and secure access to user accounts.
+Hosting: Firebase Hosting serves the static files of the client-side application, ensuring fast and secure delivery.
+Admin SDK: The Firebase Admin SDK enables secure server-side operations, such as managing user data and interacting with Firestore.
+
+## Special thanks
+
+Special thanks to Akademia Samouka - akademiasamouka.pl for providing me with the task.
+
+Any remarks are welcomed.

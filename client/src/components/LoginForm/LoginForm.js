@@ -1,15 +1,10 @@
 import { React, useState } from 'react';
 import { auth } from '../../firebase.js';
-
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button.js';
 import StyledLoginForm from './LoginForm.styled.js';
-
 import Input from '../../components/Input/Input.js';
-import {
-  validateForm /* clearFormFields */,
-} from '../../helpers/validateForm.js';
-
+import { validateForm } from '../../helpers/validateForm.js';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { fields } from '../../data/fields.js';
 function LoginForm({ path }) {
@@ -59,15 +54,12 @@ function LoginForm({ path }) {
         await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
         navigate(path);
 
-        console.log('User signed in successfully');
         setLoginState((prevState) => ({
           ...prevState,
           loginFailed: '',
         }));
       } catch (error) {
         console.log(error.message);
-
-        /*   clearFormFields(loginState, setLoginState); */
 
         setLoginState((prevState) => ({
           ...prevState,
@@ -101,14 +93,14 @@ function LoginForm({ path }) {
       {loginState.loginFailed && <span>{loginState.loginFailed}</span>}
       <form action="" onSubmit={handleLogging}>
         {allLoggingFields}
-        <Button buttonStyle="buttonAddProduct" text="LOGIN" type="submit" />
+        <Button buttonStyle="defaultButton" text="LOGIN" type="submit" />
       </form>
 
       <article>
         <h2>Use test login data</h2>
         <Button
           text="Paste"
-          buttonStyle="buttonAddProduct"
+          buttonStyle="defaultButton"
           onClick={handleTestLogin}
         />
       </article>

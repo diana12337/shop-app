@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import { doc, onSnapshot } from 'firebase/firestore';
-/* import { updateEmail } from 'firebase/auth'; */
 import { db, auth } from '../../firebase.js';
 import { fields } from '../../data/fields.js';
 import Input from '../../components/Input/Input.js';
 import Button from '../../components/Button/Button.js';
 import StyledUserData from './UserDataForm.styled.js';
-import {
-  /*  changeDataInFirestore, */
-  updateData,
-} from '../../modules/database/database.actions.js';
+import { updateData } from '../../modules/database/database.actions.js';
 import { validateForm } from '../../helpers/validateForm.js';
 const UserData = () => {
   const [userDataState, setUserDataState] = useState({
@@ -30,7 +26,6 @@ const UserData = () => {
         const userId = user.uid;
         const userDoc = doc(db, 'users', userId);
 
-        // Set up real-time listener
         unsubscribe = onSnapshot(
           userDoc,
           (userSnapshot) => {
@@ -44,9 +39,6 @@ const UserData = () => {
                 password: '',
                 errors: {},
               });
-              console.log('User data updated in real-time:', userData);
-            } else {
-              console.log('No such document!');
             }
           },
           (error) => {
@@ -108,9 +100,8 @@ const UserData = () => {
       const last = userDataState.lastName;
       const email = userDataState.email;
       const password = userDataState.password;
-      /*   updateUserEmail(userDataState.email); */
+
       updateData(first, last, email, password);
-      /* changeDataInFirestore(first, last, email); */
 
       setUserDataState((prevState) => ({
         ...prevState,
@@ -128,7 +119,7 @@ const UserData = () => {
         {allFields}
         <section>
           <Button
-            buttonStyle="buttonAddProduct"
+            buttonStyle="defaultButton"
             text="SAVE CHANGES"
             type="submit"
           />
