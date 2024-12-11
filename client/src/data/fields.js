@@ -1,6 +1,7 @@
 export const fields = {
   loginForm: [
     {
+      id: 'loginEmail',
       name: 'loginEmail',
       type: 'text',
       placeholder: '',
@@ -9,6 +10,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'loginPassword',
       name: 'loginPassword',
       type: 'password',
       placeholder: '',
@@ -20,6 +22,7 @@ export const fields = {
 
   registerForm: [
     {
+      id: 'registerName',
       name: 'firstName',
       type: 'text',
       placeholder: 'Jan',
@@ -27,6 +30,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'registerlastName',
       name: 'lastName',
       type: 'text',
       placeholder: 'Kowal',
@@ -34,6 +38,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'registerEmail',
       name: 'email',
       type: 'text',
 
@@ -43,6 +48,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'registerPassword',
       name: 'password',
       type: 'password',
       placeholder: '',
@@ -54,6 +60,7 @@ export const fields = {
   ],
   userPanel: [
     {
+      id: 'panelName',
       name: 'firstName',
       type: 'text',
       placeholder: '',
@@ -61,6 +68,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'panellastName',
       name: 'lastName',
       type: 'text',
       placeholder: '',
@@ -68,6 +76,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'panelEmail',
       name: 'email',
       type: 'text',
 
@@ -77,6 +86,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'panelPassword',
       name: 'password',
       type: 'password',
       placeholder: '',
@@ -88,6 +98,7 @@ export const fields = {
   ],
   passwordForm: [
     {
+      id: 'passwordNew',
       name: 'newPassword',
       type: 'password',
       placeholder: '',
@@ -97,6 +108,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'passwordConfirm',
       name: 'confirmPassword',
       type: 'password',
       placeholder: '',
@@ -106,6 +118,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'passwordCurrent',
       name: 'currentPassword',
       type: 'password',
       placeholder: '',
@@ -117,6 +130,7 @@ export const fields = {
   ],
   addressForm: [
     {
+      id: 'addressName',
       name: 'firstName',
       type: 'text',
       placeholder: 'Jan',
@@ -124,6 +138,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'addresslastName',
       name: 'lastName',
       type: 'text',
       placeholder: 'Kowalski',
@@ -131,6 +146,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'addressStreet',
       name: 'street',
       type: 'text',
       placeholder: 'Ogrodowa',
@@ -139,6 +155,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'addressNumber',
       name: 'streetNumber',
       type: 'text',
       placeholder: '4a',
@@ -147,6 +164,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'addressZipcode',
       name: 'zipCode',
       type: '',
       placeholder: '00-205',
@@ -155,6 +173,7 @@ export const fields = {
       required: true,
     },
     {
+      id: 'addressCity',
       name: 'city',
       type: 'text',
       placeholder: 'Kraków',

@@ -1,4 +1,10 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  collection,
+} from 'firebase/firestore';
 import { db, auth } from '../../firebase.js';
 
 import {
@@ -8,7 +14,7 @@ import {
   updateEmail,
   sendEmailVerification,
 } from 'firebase/auth';
-export default class ExchangeApi {
+export default class FirebaseApi {
   constructor(collection = '') {
     this.collection = collection;
   }
@@ -18,6 +24,12 @@ export default class ExchangeApi {
 
     const docSnap = await getDoc(docRef);
     return docSnap.data();
+  };
+  getAllData = async () => {
+    const productsCollection = collection(db, this.collection);
+    const productsSnapshot = await getDocs(productsCollection);
+    const productsList = productsSnapshot.docs.map((doc) => doc.data());
+    return productsList;
   };
 
   reauthenticateUser = async (password) => {

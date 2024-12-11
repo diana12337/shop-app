@@ -51,6 +51,3 @@ const StyledDeliveryOptions = styled.div`
 `;
 
 export default StyledDeliveryOptions;
-/* input[type='radio']:focus + label {
-  border: 2px solid black;
-} */

@@ -11,7 +11,6 @@ import {
 } from 'firebase/firestore';
 
 const UserPurchase = () => {
-  /*  const [user, setUser] = useState(null); */
   const [purchases, setPurchases] = useState([]);
   const db = getFirestore();
 
@@ -39,7 +38,6 @@ const UserPurchase = () => {
     const userId = auth.currentUser ? auth.currentUser.uid : 'unknown';
 
     if (userId !== 'unknown') {
-      /*   setUser(auth.currentUser); */
       fetchUserPurchases(userId);
     }
   }, [db]);

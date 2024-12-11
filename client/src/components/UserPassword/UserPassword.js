@@ -26,10 +26,21 @@ const UserPassword = () => {
   const handleFieldChange = (e) => {
     const { name, value } = e.target;
 
-    setUserPassword((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setUserPassword((prevState) => {
+      const newState = {
+        ...prevState,
+        [name]: value,
+      };
+
+      const errorsData = validateForm(fields.passwordForm, userPassword);
+      return {
+        ...newState,
+        errors: {
+          ...newState.errors,
+          [name]: errorsData[name],
+        },
+      };
+    });
   };
 
   const handleSubmit = (e) => {
@@ -68,7 +79,11 @@ const UserPassword = () => {
       <form action="" onSubmit={handleSubmit}>
         {allFields}
         <section>
-          {' '}
+          <p>
+            Password must contain: at least 8 characters, at least one uppercase
+            letter, at least one number, at least one special character
+            (!@#$%^&*)
+          </p>
           <Button
             buttonStyle="defaultButton"
             text="SAVE CHANGES"

@@ -16,6 +16,11 @@ const StyledUserPassword = styled.div`
   h3 {
     text-align: center;
   }
+  p {
+    font-size: 12px;
+
+    text-align: center;
+  }
 `;
 
 export default StyledUserPassword;
