@@ -78,9 +78,13 @@ Both the secret Stripe key and the key.json file should be stored in the root of
   <img src="./client/src/img/paymentScreenshot.png" alt="Screenshot of payment" width="400px">
 </p>
 
-- User panel enables updating password and personal data. It also proovides viewing purchase transactions.
+- User panel enables updating password and personal data. It also provides viewing purchase transactions.
 <p align="center">
   <img src="./client/src/img/userPanelScreenshot.png" alt="Screenshot of puser panel" width="400px">
+</p>
+
+<p align="center">
+  <img src="./client/src/img/purchaseScreenshot.png" alt="Screenshot of purchased history" width="300px">
 </p>
 
 - The app is responsive, ensuring a smooth shopping experience on every devices.
