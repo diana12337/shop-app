@@ -80,7 +80,7 @@ Both the secret Stripe key and the key.json file should be stored in the root of
 
 - User panel enables updating password and personal data. It also provides viewing purchase transactions.
 <p align="center">
-  <img src="./client/src/img/userPanelScreenshot.png" alt="Screenshot of puser panel" width="400px">
+  <img src="./client/src/img/userPanelScreenshot.png" alt="Screenshot of puser panel" width="300px">
 </p>
 
 <p align="center">
