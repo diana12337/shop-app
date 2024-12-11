@@ -8,11 +8,7 @@ ShoppApp is a web application that provides an effortless shopping experience fo
 
 ## Installation
 
-- The project uses node and npm. To run the app on your machine you should install all dependencies.
-
-```bash
-npm i
-```
+- The project uses node and npm. To run the app on your machine you should install all dependencies in both client and server directory.
 
 - To run a server follow the steps below
 
@@ -22,13 +18,21 @@ Navigate to the server directory:
 cd server
 ```
 
-Once you're in the server directory, run the command to start your server:
+Install all dependencies:
+
+```bash
+npm i
+```
+
+Attach .env file and key.json for providing authentication- for details go to section "Managing API keys"
+
+Next, run the command to start your server:
 
 ```bash
 node server.js
 ```
 
-After running the command, your server is ready at port http://localhost:4242
+After running the command, and attaching the API keys your server is ready at port http://localhost:4242
 
 - To create a localhost port you should follow the steps below
 
@@ -38,7 +42,13 @@ Navigate to the client directory:
 cd client
 ```
 
-Once you're in the client directory, run the following command:
+Install all dependencies:
+
+```bash
+npm i
+```
+
+Finally, run the following command:
 
 ```bash
 npm start

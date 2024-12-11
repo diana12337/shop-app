@@ -22,7 +22,7 @@ const StyledMain = styled.main`
     padding: 10px;
     background: white;
     border: 1px solid black;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
     cursor: pointer;
     width: 180px;
     font-weight: 600;
