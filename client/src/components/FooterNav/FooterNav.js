@@ -11,24 +11,24 @@ function FooterNav() {
       <ul>
         <h1> About us</h1>
         <li>
-          <a href="/about">About</a>{' '}
+          <a href="./about">About</a>{' '}
         </li>
         <li>
-          <a href="/ourHistory">Our history</a>{' '}
+          <a href="./ourHistory">Our history</a>{' '}
         </li>
       </ul>
       <ul>
         <h1>My account</h1>
         <li>
           {user ? (
-            <a href="/userPanel">My account</a>
+            <a href="./userPanel">My account</a>
           ) : (
-            <a href="/loginPanel">My account </a>
+            <a href="./loginPanel">My account </a>
           )}
         </li>
 
         <li>
-          <a href="/purchaseTerms">Purchase terms</a>{' '}
+          <a href="./purchaseTerms">Purchase terms</a>{' '}
         </li>
       </ul>
       <ul>

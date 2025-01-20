@@ -6,6 +6,16 @@ ShoppApp is a web application that provides an effortless shopping experience fo
   <img src="./client/src/img/mainScreenshot.png" alt="Screenshot of mainPage width="700px">
 </p>
 
+## Demo
+
+You can view a live demo of this project on Netlify:
+
+[Live Demo](shopp-app-netlify.netlify.app)
+
+This demo site showcases the full functionality of the project, including payment processing via Stripe.
+
+If you want to run the project locally go to the section "Installation".
+
 ## Installation
 
 - The project uses node and npm. To run the app on your machine you should install all dependencies in both client and server directory.

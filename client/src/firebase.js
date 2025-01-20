@@ -3,7 +3,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCK2D0EkVY3DpbWVhDPWGfMBKiMQ9qSI9M',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'shop-app-ddb47.firebaseapp.com',
   databaseURL: 'https://shop-app-ddb47-default-rtdb.firebaseio.com',
   projectId: 'shop-app-ddb47',
