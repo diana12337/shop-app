@@ -10,7 +10,7 @@ ShoppApp is a web application that provides an effortless shopping experience fo
 
 You can view a live demo of this project on Netlify:
 
-[Live Demo](shopp-app-netlify.netlify.app)
+[Live Demo](https://shopp-app-netlify.netlify.app)
 
 This demo site showcases the full functionality of the project, including payment processing via Stripe.
 
