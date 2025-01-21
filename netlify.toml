@@ -4,4 +4,7 @@
   publish = "client/build"
 
 [functions]
-  directory = "../server"
+  directory = "server"
+
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
