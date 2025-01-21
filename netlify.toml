@@ -4,4 +4,4 @@
   publish = "client/build"
 
 [functions]
-  directory = "server"
+  directory = "../server"
