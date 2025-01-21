@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import { Link } from 'react-router-dom';
 import StyledFooterNav from './FooterNav.styled.js';
 import facebook from '../../img/facebook.png';
 import instagram from '../../img/instagram.png';
@@ -10,25 +11,27 @@ function FooterNav() {
     <StyledFooterNav>
       <ul>
         <h1> About us</h1>
+
         <li>
-          <a href="./about">About</a>{' '}
+          <Link to={'/about'}>About </Link>
         </li>
+
         <li>
-          <a href="./ourHistory">Our history</a>{' '}
+          <Link to={'/ourHistory'}>Our History </Link>
         </li>
       </ul>
       <ul>
         <h1>My account</h1>
         <li>
           {user ? (
-            <a href="./userPanel">My account</a>
+            <Link to={'/userPanel'}>My account</Link>
           ) : (
-            <a href="./loginPanel">My account </a>
+            <Link to={'/loginPanel'}>My account </Link>
           )}
         </li>
 
         <li>
-          <a href="./purchaseTerms">Purchase terms</a>{' '}
+          <Link to={'/purchaseTerms'}>Purchase terms</Link>
         </li>
       </ul>
       <ul>
